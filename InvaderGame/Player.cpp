@@ -54,18 +54,5 @@ void Player::move() {
 }
 
 void Player::shot() {
-	/*if (key[KEY_INPUT_SPACE] >= 1) {
-		if (bullet.flag == false) {
-			bullet.flag = true;
-			bullet.create(this->x + width / 2, this->y);
-		}
-	}
 
-	if (bullet.flag == true) {
-		bullet.draw();
-		bullet.move();
-		if (bullet.y <= 0) {
-			bullet.flag = false;
-		}
-	}*/
 }

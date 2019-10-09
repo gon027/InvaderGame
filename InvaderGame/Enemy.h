@@ -17,6 +17,8 @@ public:
 	void move() override;
 	void shot() override;
 
+	void paint(int _x, int _y);
+
 public:
 	Bullet bullet;
 

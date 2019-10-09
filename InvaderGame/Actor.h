@@ -3,8 +3,6 @@
 #include "DxLib.h"
 
 class Bullet;
-class Player;
-class Enemy;
 
 class Actor {
 public:
@@ -19,14 +17,13 @@ protected:
 	virtual void draw() = 0;
 	virtual void move() = 0;
 	virtual void shot() {};
+	void LoadActorImage(const char* path);		//‰æ‘œ“Ç‚İ‚İ
+	void DrawImage(int x, int y);				//‰æ‘œ•`‰æ
 
 public:
 	bool isActorCollision(Actor& enemy);		//Actor“¯m‚Ì“–‚½‚è”»’è
 	bool isBulletCollision(Bullet& bullet);		//Bullet‚Ì“–‚½‚è”»’è
 
-	void LoadActorImage(const char* path);		//‰æ‘œ“Ç‚İ‚İ
-	void DrawImage(int x, int y);				//‰æ‘œ•`‰æ
-	
 public:
 	int img;		//‰æ‘œƒnƒ“ƒhƒ‹
 	int x;

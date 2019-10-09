@@ -17,7 +17,7 @@ private:
 	Fps fps;
 	Player player;
 	Enemy enemy;
-	Enemys enemys;
+	//Enemys enemys;
 
 	int count = 0;
 };
