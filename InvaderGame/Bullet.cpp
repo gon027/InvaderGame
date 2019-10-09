@@ -12,7 +12,7 @@ Bullet::~Bullet(){
 }
 
 void Bullet::setup(){
-	LoadBulletImage("bullet.png");
+	LoadBulletImage("image/bullet.png");
 }
 
 void Bullet::create(int _x, int _y){

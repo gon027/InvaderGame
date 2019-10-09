@@ -12,7 +12,7 @@ Enemy::~Enemy(){
 
 void Enemy::setup(){
 	printfDx("Enemy::setup\n");
-	LoadActorImage("enemy.png");
+	LoadActorImage("image/enemy.png");
 
 	bullet.setup();
 }

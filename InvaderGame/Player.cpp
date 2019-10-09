@@ -14,7 +14,7 @@ Player::~Player(){
 }
 
 void Player::setup() {
-	LoadActorImage("player.png");
+	LoadActorImage("image/player.png");
 	
 	bullet.setup();
 }
