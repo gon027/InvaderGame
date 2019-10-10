@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENEMYS_H
+#define ENEMYS_H
 
 #include "Enemy.h"
 
@@ -24,3 +25,5 @@ private:
 	int x;
 	int y;
 };
+
+#endif // !ENEMYS_H

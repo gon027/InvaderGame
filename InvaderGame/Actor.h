@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ACTOR_H
+#define ACTOR_H
 
 #include "DxLib.h"
 
@@ -34,3 +35,5 @@ public:
 	int yspeed;
 	bool life;
 };
+
+#endif // !ACTOR_H

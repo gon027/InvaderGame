@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BULLET_H
+#define BULLET_H
 
 #include "Actor.h"
 
@@ -29,3 +30,5 @@ public:
 	int speed = 15;
 	bool flag;
 };
+
+#endif // !BULLET_H

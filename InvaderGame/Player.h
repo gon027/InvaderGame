@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "Actor.h"
 #include "Bullet.h"
@@ -20,3 +21,5 @@ private:
 public:
 	Bullet bullet;
 };
+
+#endif // !PLAYER_H

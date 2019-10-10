@@ -61,7 +61,7 @@ void Game::update(){
 		//“G‚ª1‘Ì‚Ì
 		//FIXED: “G‚Ìlife‚ğfalse‚É‚µ‚½‚¾‚¯‚¾‚Æ“G‚ÌÀ•W‚ª‹L˜^‚³‚ê‚é‚½‚ßA’e‚à‚µ‚­‚Í–¡•û‚Ì
 		//“–‚½‚è”»’è‚ª—LŒø‚É‚È‚é
-		//TODO: ã‹L‚ğC³‚·‚éB
+		//TODO:ã‹L‚ğC³‚·‚éB
 		if (enemy.life) {
 			if (player.isActorCollision(enemy)) {
 				player.life = false;
@@ -99,9 +99,11 @@ void Game::update(){
 			}*/
 
 			if (player.bullet.isCollision(enemy)) {
-				printfDx("HIT!!!\n");
-				enemy.life = false;
-				player.bullet.flag = false;
+				if (enemy.life) {
+					printfDx("HIT!!!\n");
+					enemy.life = false;
+					player.bullet.flag = false;
+				}
 			}
 
 			//©•ª‚Ì’e‚ª“G‚Ì’e‚É“–‚½‚Á‚½‚Ìˆ—

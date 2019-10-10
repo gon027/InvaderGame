@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENEMY_H
+#define ENEMY_H
 
 #include "Actor.h"
 #include "Bullet.h"
@@ -24,3 +25,5 @@ public:
 
 	int count;
 };
+
+#endif // !ENEMY_H

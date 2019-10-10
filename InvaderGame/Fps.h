@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FPS_H
+#define FPS_H
 
 #include "DxLib.h"
 
@@ -42,3 +43,5 @@ public:
 		}
 	}
 };
+
+#endif // !FPS_H

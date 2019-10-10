@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 
 #include "Fps.h"
 #include "Player.h"
@@ -21,3 +22,5 @@ private:
 
 	int count = 0;
 };
+
+#endif // !GAME_H

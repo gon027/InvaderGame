@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYMANAGER_H
+#define KEYMANAGER_H
 
 #include "DxLib.h"
 
@@ -14,3 +15,5 @@ void inputKey() {
 		else key[i] = 0;
 	}
 }
+
+#endif // !KEYMANAGER_H
