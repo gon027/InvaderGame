@@ -7,7 +7,7 @@ bool Actor::isActorCollision(Actor& actor){
 		&& this->x + width >= actor.x
 		&& this->y <= actor.y + actor.height
 		&& this->y + height >= actor.y) {
-		printfDx("isActorCollision\n");
+		//printfDx("isActorCollision\n");
 		return true;
 	}
 
@@ -19,7 +19,7 @@ bool Actor::isBulletCollision(Bullet& bullet){
 		&& x + width >= bullet.x
 		&& y <= bullet.y + bullet.height
 		&& y + height >= bullet.y) {
-		printfDx("isBulletCollision\n");
+		//printfDx("isBulletCollision\n");
 		return true;
 	}
 
@@ -27,7 +27,7 @@ bool Actor::isBulletCollision(Bullet& bullet){
 }
 
 void Actor::LoadActorImage(const char* path) {
-	printfDx("ACtor::LoadActorImage\n");
+	//printfDx("ACtor::LoadActorImage\n");
 	this->img = LoadGraph(path);
 	if (img == -1) {
 		printfDx("LOADIMAGE_ERROR\n");
@@ -37,7 +37,7 @@ void Actor::LoadActorImage(const char* path) {
 }
 
 void Actor::DrawImage(int x, int y){
-	printfDx("ACtor::DrawImage\n");
+	//printfDx("ACtor::DrawImage\n");
 	int error;
 	error = DrawGraph(x, y, img, TRUE);
 	if (error != 0) {

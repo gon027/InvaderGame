@@ -11,14 +11,14 @@ Enemy::~Enemy(){
 }
 
 void Enemy::setup(){
-	printfDx("Enemy::setup\n");
+	//printfDx("Enemy::setup\n");
 	LoadActorImage("image/enemy.png");
 
 	bullet.setup();
 }
 
 void Enemy::update(){
-	printfDx("Enemy::update\n");
+	//printfDx("Enemy::update\n");
 	count++;
 	draw();
 	move();
@@ -33,12 +33,12 @@ void Enemy::init(){
 }
 
 void Enemy::draw(){
-	printfDx("Enemy::draw\n");
+	//printfDx("Enemy::draw\n");
 	DrawImage(this->x, this->y);
 }
 
 void Enemy::move(){
-	printfDx("Enemy::move\n");
+	//printfDx("Enemy::move\n");
 	x += xspeed;
 
 	if (x + width >= Window::WIDTH) {
@@ -59,7 +59,7 @@ void Enemy::move(){
 }
 
 void Enemy::shot(){
-	printfDx("Enemy::shot\n");
+	//printfDx("Enemy::shot\n");
 	count++;
 	if (count == 60) {
 		if (bullet.flag == false) {
