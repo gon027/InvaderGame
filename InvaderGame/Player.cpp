@@ -25,8 +25,8 @@ void Player::update(){
 }
 
 void Player::init(){
-	this->x = 320 - 25;
-	this->y = 330;
+	this->x = (Window::WIDTH / 2) - 25;
+	this->y = 362;
 	this->xspeed = 5;
 	this->life = true;
 }
@@ -43,16 +43,4 @@ void Player::move() {
 	if (x + width >= Window::WIDTH) {
 		x = Window::WIDTH - width;
 	}
-
-	if (y <= 0) {
-		y = 0;
-	}
-
-	if (y + height >= Window::HEIGHT) {
-		y = Window::HEIGHT - height;
-	}
-}
-
-void Player::shot() {
-
 }

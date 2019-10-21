@@ -21,6 +21,9 @@ private:
 	Enemys enemys;
 
 	int count = 0;
+
+	bool flag = false;
+	int timer = 0;
 };
 
 #endif // !GAME_H

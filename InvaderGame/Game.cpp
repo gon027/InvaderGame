@@ -26,55 +26,36 @@ void Game::update(){
 	fps.Draw();
 
 	inputKey();
+	DrawBox(0, 430, Window::WIDTH, Window::HEIGHT, GetColor(0, 0, 0), TRUE);
 
 	if (player.life) {
 		player.update();
 
 		if (key[KEY_INPUT_LEFT] >= 1) {
-			//printfDx("LEFT\n");
 			player.x -= player.xspeed;
 		}
 
 		if (key[KEY_INPUT_RIGHT] >= 1) {
-			//printfDx("RIGHT\n");
 			player.x += player.xspeed;
 		}
 
-		if (key[KEY_INPUT_UP] >= 1) {
-			//printfDx("UP\n");
-			player.y -= player.xspeed;
-		}
-
-		if (key[KEY_INPUT_DOWN] >= 1) {
-			//printfDx("DOWN\n");
-			player.y += player.xspeed;
-		}
-
 		//“G‚ª–¡•û‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
-		//“G‚ª1‘Ì‚Ì
 		//FIXED: “G‚Ìlife‚ğfalse‚É‚µ‚½‚¾‚¯‚¾‚Æ“G‚ÌÀ•W‚ª‹L˜^‚³‚ê‚é‚½‚ßA’e‚à‚µ‚­‚Í–¡•û‚Ì“–‚½‚è”»’è‚ª—LŒø‚É‚È‚é
 		//TODO:ã‹L‚ğC³‚·‚éB
-		/*if (player.isActorCollision(enemy)) {
-			if (enemy.life) {
-				player.life = false;
-			}
-		}*/
-
 		//“G‚ª•¡”‘Ì‚Ì
 		for (int i = 0; i < Enemys::h; i++) {
 			for (int j = 0; j < Enemys::w; j++) {
 				if (enemys.enemys[i][j].life) {
 					if (player.isActorCollision(enemys.enemys[i][j])) {
-						printfDx("player::Hit\n");
+						//printfDx("player::Hit\n");
 						//player.life = false;
 					}
 					else {
-						printfDx("player::NoHit\n");
+						//printfDx("player::NoHit\n");
 					}
 				}
 			}
 		}
-
 
 		if (key[KEY_INPUT_SPACE] >= 1) {
 			if (player.bullet.flag == false) {
@@ -82,7 +63,6 @@ void Game::update(){
 				player.bullet.create(player.x + player.width / 2, player.y);
 			}
 		}
-
 
 		if (player.bullet.flag == true) {
 			player.bullet.draw();
@@ -94,7 +74,7 @@ void Game::update(){
 			}
 
 			//©•ª‚Ì’e‚ª“G‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—(•¡”)
-			/*for (int i = 0; i < Enemys::h; i++) {
+			for (int i = 0; i < Enemys::h; i++) {
 				for (int j = 0; j < Enemys::w; j++) {
 					if (player.bullet.isCollision(enemys.enemys[i][j])) {
 						printfDx("HIT!!!\n");
@@ -102,16 +82,7 @@ void Game::update(){
 						player.bullet.flag = false;
 					}
 				}
-			}*/
-
-			/*if (player.bullet.isCollision(enemy)) {
-				if (enemy.life) {
-					//printfDx("HIT!!!\n");
-					//enemy.life = false;
-					//player.bullet.flag = false;
-				}
-			}*/
-
+			}
 
 			for (int i = 0; i < Enemys::h; i++) {
 				for (int j = 0; j < Enemys::w; j++) {
@@ -134,7 +105,28 @@ void Game::update(){
 		for (int j = 0; j < Enemys::w; j++) {
 			if (enemys.enemys[i][j].life) {
 				enemys.enemys[i][j].draw();
-				//enemys.enemys[i][j].move();
+				enemys.enemys[i][j].move();				
+
+				//“G‚ÌÜ‚è•Ô‚µˆ—
+				if (enemys.enemys[i][j].turnflag) {
+					enemys.enemys[i][j].turnflag = false;
+					timer++;
+					if (timer == 30) {
+
+						//printfDx("i = %d, j = %d, flag = %d\n", i, j, enemys.enemys[i][j].turnflag);
+						for (int n = 0; n < Enemys::h; n++) {
+							for (int m = 0; m < Enemys::w; m++) {
+								enemys.enemys[n][m].y += enemys.enemys[n][m].yspeed;
+								enemys.enemys[n][m].xspeed = -enemys.enemys[n][m].xspeed;
+								enemys.enemys[n][m].turnflag = false;
+							}
+						}
+
+						timer = 0;
+						break;
+					}
+				}
+
 
 				//“G‚Ì’e‚ª¶¬‚³‚ê‚éˆ—
 				if (enemys.enemys[i][j].bullet.flag == false) {
@@ -155,14 +147,12 @@ void Game::update(){
 						}
 					}
 
-
-					//‰æ–ÊŠOˆ—
+					//‰æ–ÊŠOˆ—i‰æ–ÊŠO‚Éo‚½‚ç’e‚ğÁ‚·j
 					if (enemys.enemys[i][j].bullet.y >= Window::HEIGHT) {
 						enemys.enemys[i][j].bullet.flag = false;
 						enemys.enemys[i][j].count = 0;
 					}
 				}
-				
 			}
 		}
 	}

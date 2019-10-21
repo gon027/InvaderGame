@@ -27,7 +27,7 @@ public:
 	int y;
 	int width = 50;
 	int height = 50;
-	int speed = 15;
+	int speed = 5;
 	bool flag;
 };
 

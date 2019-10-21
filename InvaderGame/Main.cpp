@@ -14,7 +14,9 @@ void update() {
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine, int nCmdShow) {
 	ChangeWindowMode(TRUE);
-	//SetWindowSizeChangeEnableFlag(FALSE, FALSE);
+	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
+	SetGraphMode(Window::WIDTH, Window::HEIGHT, 32);
+	SetWindowSize(Window::WIDTH, Window::HEIGHT);
 	DxLib_Init();
 	SetDrawScreen(DX_SCREEN_BACK); 
 

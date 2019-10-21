@@ -16,7 +16,7 @@ public:
 	void draw() override;
 	void init() override;
 	void move() override;
-	void shot() override;
+	void shot();
 
 	void paint(int _x, int _y);
 
@@ -24,6 +24,8 @@ public:
 	Bullet bullet;
 
 	int count;
+	int interval = 0;
+	bool turnflag;
 };
 
 #endif // !ENEMY_H

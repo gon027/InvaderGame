@@ -16,7 +16,6 @@ public:
 private:
 	void draw() override;
 	void move() override;
-	void shot() override;
 
 public:
 	Bullet bullet;

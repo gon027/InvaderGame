@@ -26,9 +26,10 @@ void Enemy::update(){
 
 void Enemy::init(){
 	printfDx("Enemy::init\n");
-	this->xspeed = 5;
-	this->yspeed = 5;
+	this->xspeed = 10;
+	this->yspeed = 10;
 	this->life = true;
+	this->turnflag = false;
 	this->count = 0;
 }
 
@@ -39,23 +40,35 @@ void Enemy::draw(){
 
 void Enemy::move(){
 	//printfDx("Enemy::move\n");
-	x += xspeed;
+	interval++;
+	DrawFormatString(0, 32, GetColor(0, 0, 0), "%d", interval);
 
-	if (x + width >= Window::WIDTH) {
-		xspeed = -xspeed;
+	if (interval == 30) {
+		x -= xspeed;
+		interval = 0;
 	}
 
-	if (x <= 0) {
-		xspeed = -xspeed;
+	//x座標の画面外判定
+	if (x <= 0 OR x + width >= Window::WIDTH) {
+		//xspeed = -xspeed;
+		turnflag = true;
 	}
 
+	/*if (turnflag) {
+		printfDx("TRUE\n");
+		xspeed = -xspeed;
+		//turnflag = false;
+	}*/
+
+	/*
+	//y座標の画面外判定
 	if (y <= 0) {
 		yspeed = -yspeed;
 	}
 
 	if (y + height >= Window::HEIGHT) {
 		yspeed = -yspeed;
-	}
+	}*/
 }
 
 void Enemy::shot(){

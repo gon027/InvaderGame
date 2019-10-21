@@ -3,6 +3,7 @@
 
 #include "DxLib.h"
 
+#include "Define.h"
 #include "Game.h"
 
 void init();
