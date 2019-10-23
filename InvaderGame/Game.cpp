@@ -4,7 +4,11 @@
 #include "KeyManager.h"
 
 Game::Game(){
-	start();
+	count = 0;
+
+	player.setup();
+	enemys.setup();
+	ufo.setup();
 }
 
 Game::~Game(){
@@ -15,10 +19,11 @@ void Game::start(){
 	count = 0;
 
 	player.setup();
+	enemys.setup();
+	ufo.setup();
+
 	//enemy.start();
 	//enemy.paint(100, 100);
-
-	enemys.setup();
 }
 
 void Game::update(){
@@ -40,7 +45,8 @@ void Game::update(){
 		}
 
 		//“G‚ª–¡•û‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
-		//FIXED: “G‚Ìlife‚ğfalse‚É‚µ‚½‚¾‚¯‚¾‚Æ“G‚ÌÀ•W‚ª‹L˜^‚³‚ê‚é‚½‚ßA’e‚à‚µ‚­‚Í–¡•û‚Ì“–‚½‚è”»’è‚ª—LŒø‚É‚È‚é
+		//FIXED: “G‚Ìlife‚ğfalse‚É‚µ‚½‚¾‚¯‚¾‚Æ“G‚ÌÀ•W‚ª‹L˜^‚³‚ê‚é‚½‚ßA
+		//		 ’e‚à‚µ‚­‚Í–¡•û‚Ì“–‚½‚è”»’è‚ª—LŒø‚É‚È‚é
 		//TODO:ã‹L‚ğC³‚·‚éB
 		//“G‚ª•¡”‘Ì‚Ì
 		for (int i = 0; i < Enemys::h; i++) {
@@ -57,10 +63,11 @@ void Game::update(){
 			}
 		}
 
-		if (key[KEY_INPUT_SPACE] >= 1) {
+		if (key[KEY_INPUT_A] >= 1) {
+			printfDx("%d\n", player.bullet.flag);
 			if (player.bullet.flag == false) {
 				player.bullet.flag = true;
-				player.bullet.create(player.x + player.width / 2, player.y);
+				player.bullet.create(player.x, player.y - (player.bullet.height * 2));
 			}
 		}
 
@@ -71,6 +78,14 @@ void Game::update(){
 			//‰æ–ÊŠO‚Å’e‚ªÁ‚¦‚éˆ—
 			if (player.bullet.y <= 0) {
 				player.bullet.flag = false;
+			}
+
+			//UFO‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
+			if (player.bullet.isCollision(ufo)) {
+				if (ufo.life) {
+					printfDx("UFO::HIT!!\n");
+					ufo.life = false;
+				}
 			}
 
 			//©•ª‚Ì’e‚ª“G‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—(•¡”)
@@ -101,11 +116,12 @@ void Game::update(){
 		}
 	}
 
+	enemys.shotFlag();
 	for (int i = 0; i < Enemys::h; i++) {
 		for (int j = 0; j < Enemys::w; j++) {
 			if (enemys.enemys[i][j].life) {
 				enemys.enemys[i][j].draw();
-				enemys.enemys[i][j].move();				
+				enemys.enemys[i][j].move();
 
 				//“G‚ÌÜ‚è•Ô‚µˆ—
 				if (enemys.enemys[i][j].turnflag) {
@@ -127,30 +143,34 @@ void Game::update(){
 					}
 				}
 
+				printfDx("%d\n", enemys.enemys[i][j].shotflag);
 
-				//“G‚Ì’e‚ª¶¬‚³‚ê‚éˆ—
-				if (enemys.enemys[i][j].bullet.flag == false) {
-					enemys.enemys[i][j].bullet.flag = true;
-					enemys.enemys[i][j].bullet.create(enemys.enemys[i][j].x, enemys.enemys[i][j].y);
-				}
-
-				//“G‚Ì’e‚Ìflag‚ªtrue‚Ì‚Ì”»’è
-				if (enemys.enemys[i][j].bullet.flag) {
-					enemys.enemys[i][j].bullet.draw();
-					enemys.enemys[i][j].bullet.y += 10;
-
-					//“G‚Ì’e‚ªƒvƒŒƒCƒ„[‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
-					if (enemys.enemys[i][j].bullet.isCollision(player)) {
-						if (player.life) {
-							//printfDx("Bullet::isHit\n");
-							//player.life = false;
-						}
+				if (enemys.enemys[i][j].shotflag) {
+					//“G‚Ì’e‚ª¶¬‚³‚ê‚éˆ—
+					if (enemys.enemys[i][j].bullet.flag == false) {
+						enemys.enemys[i][j].bullet.flag = true;
+						enemys.enemys[i][j].bullet.create(enemys.enemys[i][j].x, enemys.enemys[i][j].y);
+						//enemys.enemys[i][j].bullet.create(100, 100);
 					}
 
-					//‰æ–ÊŠOˆ—i‰æ–ÊŠO‚Éo‚½‚ç’e‚ğÁ‚·j
-					if (enemys.enemys[i][j].bullet.y >= Window::HEIGHT) {
-						enemys.enemys[i][j].bullet.flag = false;
-						enemys.enemys[i][j].count = 0;
+					//“G‚Ì’e‚Ìflag‚ªtrue‚Ì‚Ì”»’è
+					if (enemys.enemys[i][j].bullet.flag) {
+						enemys.enemys[i][j].bullet.draw();
+						enemys.enemys[i][j].bullet.y += 10;
+
+						//“G‚Ì’e‚ªƒvƒŒƒCƒ„[‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
+						if (enemys.enemys[i][j].bullet.isCollision(player)) {
+							if (player.life) {
+								//printfDx("Bullet::isHit\n");
+								//player.life = false;
+							}
+						}
+
+						//‰æ–ÊŠOˆ—i‰æ–ÊŠO‚Éo‚½‚ç’e‚ğÁ‚·j
+						if (enemys.enemys[i][j].bullet.y >= Window::HEIGHT) {
+							enemys.enemys[i][j].bullet.flag = false;
+							enemys.enemys[i][j].count = 0;
+						}
 					}
 				}
 			}
@@ -192,6 +212,9 @@ void Game::update(){
 			}
 		}
 	}*/
+
+	//UFO‚Ìˆ—
+	ufo.update();
 	
 
 	fps.Wait();

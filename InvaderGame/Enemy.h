@@ -26,6 +26,7 @@ public:
 	int count;
 	int interval = 0;
 	bool turnflag;
+	bool shotflag;
 };
 
 #endif // !ENEMY_H

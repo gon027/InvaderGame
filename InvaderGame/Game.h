@@ -4,6 +4,7 @@
 #include "Fps.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "UFO.h"
 #include "Enemys.h"
 #include "BaseScene.h"
 
@@ -20,6 +21,7 @@ public:
 	Player player;
 	Enemy enemy;
 	Enemys enemys;
+	UFO ufo;
 
 	int count = 0;
 

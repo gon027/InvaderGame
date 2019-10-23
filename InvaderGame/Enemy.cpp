@@ -34,6 +34,7 @@ void Enemy::init(){
 	this->life = true;
 	this->turnflag = false;
 	this->count = 0;
+	this->shotflag = false;
 }
 
 void Enemy::draw(){

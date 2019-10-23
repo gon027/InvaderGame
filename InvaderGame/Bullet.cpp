@@ -4,7 +4,7 @@
 #include "Player.h"
 
 Bullet::Bullet(){
-
+	setup();
 }
 
 Bullet::~Bullet(){
@@ -18,7 +18,6 @@ void Bullet::setup(){
 void Bullet::create(int _x, int _y){
 	this->x = _x;
 	this->y = _y;
-	//this->flag = true;
 }
 
 void Bullet::draw(){
@@ -51,6 +50,7 @@ bool Bullet::isBCollision(const Bullet & bullet){
 }
 
 void Bullet::LoadBulletImage(const char* path) {
+	printfDx("Bullet::LoadBulletImage\n");
 	this->img = LoadGraph(path);
 	if (img == -1) {
 		printfDx("LOADIMAGE_ERROR\n");
@@ -58,6 +58,7 @@ void Bullet::LoadBulletImage(const char* path) {
 }
 
 void Bullet::DrawImage(int x, int y) {
+	printfDx("Bullet::DrawImage\n");
 	int error;
 	error = DrawGraph(x, y, img, TRUE);
 	if (error != 0) {

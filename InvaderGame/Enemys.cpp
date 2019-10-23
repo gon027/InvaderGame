@@ -37,3 +37,19 @@ void Enemys::init() {
 void Enemys::draw(){
 	
 }
+
+void Enemys::shotFlag(){
+	//配列の一番外側のエイリアンだけが弾を打てるようにする
+	for (int i = 0; i < h; i++) {
+		for (int j = 0; j < w; j++) {
+			int index = i + 1;
+				printfDx("aaaa");
+			if (index >= h || enemys[index][j].life == false) {
+				enemys[i][j].shotflag = true;
+			}
+			if (enemys[index][j].life == true) {
+				enemys[i][j].shotflag = false;
+			}
+		}
+	}
+}

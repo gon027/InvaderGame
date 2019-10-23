@@ -1,6 +1,6 @@
 #include "Main.h"
 
-//Game game;
+Game game;
 
 SceneController sController;
 Status status;
@@ -8,22 +8,23 @@ Status status;
 void init() {
 	SetBackgroundColor(0, 255, 255);
 
-	status = Title;
+	game.start();
 
-	//game.start();
-	sController.start();
+	//status = Title;
+	//sController.start();
 }
 
 void update() {
-	//game.update();
-	sController.update();
+	game.update();
+	
+	/*sController.update();
 
 	if (status == Title) {
 		if (CheckHitKey(KEY_INPUT_SPACE)) {
 			status = GameScene;
 			sController.changeScene(status);
 		}
-	}
+	}*/
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine, int nCmdShow) {

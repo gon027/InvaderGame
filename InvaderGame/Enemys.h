@@ -12,8 +12,9 @@ public:
 	void update();
 
 	void init();
-
 	void draw();
+
+	void shotFlag();
 
 	//Ü‚è•Ô‚µ”»’èŠÖ”
 	

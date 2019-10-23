@@ -6,8 +6,7 @@
 #include "Enemy.h"
 
 Player::Player(){
-	//init();
-	setup();
+
 }
 
 Player::~Player(){
@@ -19,7 +18,7 @@ void Player::setup() {
 
 	init();
 	
-	bullet.setup();
+	//bullet.setup();
 }
 
 void Player::update(){
@@ -28,7 +27,7 @@ void Player::update(){
 }
 
 void Player::init(){
-	this->x = (Window::WIDTH / 2) - 25;
+	this->x = (Window::WIDTH / 2) - (width / 2);
 	this->y = 362;
 	this->xspeed = 5;
 	this->life = true;

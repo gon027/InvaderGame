@@ -158,10 +158,12 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="UFO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="BaseScene.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Define.h" />
@@ -174,6 +176,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneController.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="UFO.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
