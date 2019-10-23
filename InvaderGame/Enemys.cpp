@@ -4,14 +4,18 @@
 #include "Define.h"
 
 Enemys::Enemys(){
-	init();
+	//init();
+	//setup();
 }
 
 Enemys::~Enemys(){
 
 }
 
+//コンストラクタで呼び出す
 void Enemys::setup(){
+	init();
+
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
 			enemys[i][j].setup();

@@ -3,7 +3,8 @@
 #include "Define.h"
 
 Enemy::Enemy(){
-	init();
+	//init();
+	setup();
 }
 
 Enemy::~Enemy(){
@@ -11,8 +12,10 @@ Enemy::~Enemy(){
 }
 
 void Enemy::setup(){
-	//printfDx("Enemy::setup\n");
+	//printfDx("Enemy::start\n");
 	LoadActorImage("image/enemy.png");
+
+	init();
 
 	bullet.setup();
 }
@@ -25,7 +28,7 @@ void Enemy::update(){
 }
 
 void Enemy::init(){
-	printfDx("Enemy::init\n");
+	//printfDx("Enemy::init\n");
 	this->xspeed = 10;
 	this->yspeed = 10;
 	this->life = true;

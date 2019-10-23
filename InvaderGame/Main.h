@@ -4,6 +4,7 @@
 #include "DxLib.h"
 
 #include "Define.h"
+#include "SceneController.h"
 #include "Game.h"
 
 void init();

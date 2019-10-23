@@ -7,13 +7,24 @@
 #define AND &&
 
 namespace Window {
-	
 #ifdef FULL_SCREEN
+	//画面サイズ
 	static const int WIDTH = 1440;
 	static const int HEIGHT = 900;
+
+	//画面の大きさ
+	static const int LEFT = 400;
+	static const int MIDDLE = 640;
+	static const int RIGHT = 400;
+	static const int EDGE = LEFT + MIDDLE + RIGHT;
+
+	//Actorの移動範囲
+	static const int WALL_L = LEFT;
+	static const int WALL_R = LEFT + MIDDLE;
 #else
-	static const int WIDTH = 640;
-	static const int HEIGHT = 480;
+	//画面サイズ
+	constexpr int WIDTH = 640;
+	constexpr int HEIGHT = 480;
 #endif // FULL_SCREEN
 }
 
@@ -22,5 +33,10 @@ namespace Alian{
 	static const int H = 3;
 }
 
-#endif // !DEFINE_H
 
+enum Status {
+	Title = 0,
+	GameScene,
+};
+
+#endif // !DEFINE_H

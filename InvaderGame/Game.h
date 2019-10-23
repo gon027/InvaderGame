@@ -5,16 +5,17 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Enemys.h"
+#include "BaseScene.h"
 
-class Game {
+class Game : public BaseScene{
 public:
 	Game();
 	~Game();
 
-	void setup();
-	void update();
+	void start() override;
+	void update() override;
 
-private:
+public:
 	Fps fps;
 	Player player;
 	Enemy enemy;

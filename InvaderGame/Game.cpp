@@ -4,18 +4,18 @@
 #include "KeyManager.h"
 
 Game::Game(){
-
+	start();
 }
 
 Game::~Game(){
 
 }
 
-void Game::setup(){
+void Game::start(){
 	count = 0;
 
 	player.setup();
-	//enemy.setup();
+	//enemy.start();
 	//enemy.paint(100, 100);
 
 	enemys.setup();

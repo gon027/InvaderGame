@@ -6,7 +6,8 @@
 #include "Enemy.h"
 
 Player::Player(){
-	init();
+	//init();
+	setup();
 }
 
 Player::~Player(){
@@ -15,6 +16,8 @@ Player::~Player(){
 
 void Player::setup() {
 	LoadActorImage("image/player.png");
+
+	init();
 	
 	bullet.setup();
 }
