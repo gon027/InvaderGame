@@ -43,7 +43,7 @@ void Enemys::shotFlag(){
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
 			int index = i + 1;
-				printfDx("aaaa");
+			//printfDx("aaaa\n");
 			if (index >= h || enemys[index][j].life == false) {
 				enemys[i][j].shotflag = true;
 			}

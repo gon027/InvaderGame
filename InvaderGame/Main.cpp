@@ -4,11 +4,13 @@ Game game;
 
 SceneController sController;
 Status status;
+int image[4];
 
 void init() {
 	SetBackgroundColor(0, 255, 255);
 
 	game.start();
+	///LoadDivGraph("image/block_test.png", 4, 4, 1, 32, 32, image);
 
 	//status = Title;
 	//sController.start();
@@ -16,6 +18,8 @@ void init() {
 
 void update() {
 	game.update();
+	//DrawGraph(100, 100, image[0], TRUE);
+
 	
 	/*sController.update();
 

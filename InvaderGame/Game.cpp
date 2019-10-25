@@ -4,11 +4,13 @@
 #include "KeyManager.h"
 
 Game::Game(){
-	count = 0;
+	/*count = 0;
 
 	player.setup();
 	enemys.setup();
 	ufo.setup();
+
+	block.load();*/
 }
 
 Game::~Game(){
@@ -22,6 +24,16 @@ void Game::start(){
 	enemys.setup();
 	ufo.setup();
 
+	//wall.load();
+	/*wall2.load();
+	wall3.load();
+	wall4.load();
+	*/
+
+	block.load();
+	block.init(400, 100);
+	
+
 	//enemy.start();
 	//enemy.paint(100, 100);
 }
@@ -32,6 +44,18 @@ void Game::update(){
 
 	inputKey();
 	DrawBox(0, 430, Window::WIDTH, Window::HEIGHT, GetColor(0, 0, 0), TRUE);
+
+	block.update();
+	if(key[KEY_INPUT_B] == 1) {
+		block++;
+	}
+
+	//wall.draw(100, 300);
+	//wall.update();
+	/*wall2.draw(100, 300);
+	wall3.draw(100, 300);
+	wall4.draw(100, 300);
+	*/
 
 	if (player.life) {
 		player.update();
@@ -113,6 +137,15 @@ void Game::update(){
 					}
 				}
 			}
+
+			//’e‚ªƒuƒƒbƒN‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
+			if (block()) {
+				if(block.collision(player.bullet.x, player.bullet.y, player.bullet.width, player.height)) {
+					//printfDx("aaaaa\n");
+					block++;
+					player.bullet.flag = false;
+				}
+			}
 		}
 	}
 
@@ -143,7 +176,7 @@ void Game::update(){
 					}
 				}
 
-				printfDx("%d\n", enemys.enemys[i][j].shotflag);
+				//printfDx("%d\n", enemys.enemys[i][j].shotflag);
 
 				if (enemys.enemys[i][j].shotflag) {
 					//“G‚Ì’e‚ª¶¬‚³‚ê‚éˆ—

@@ -6,18 +6,31 @@ public:
 	Block();
 	~Block();
 
-	void init();
+	void init(int _x, int _y);
+	void load();
 	void update();
-	void draw(int x, int y);
+	void draw();
+	bool collision(int _x, int _y, int _width, int _height);
 
-	bool collision(int x, int y);
+	bool getLife();
+
+	//‰æ‘œ‚ğ“ü‚ê‘Ö‚¦‚é
+	Block& operator++(int _count);
+
+	//¶‘¶ƒtƒ‰ƒO‚ğ•Ô‚·
+	bool operator()() {
+		return this->life;
+	}
 
 private:
-	int img;
+	int img[4];
+	int image;
 	int x;
 	int y;
-	int width;
-	int height;
+	int width = 32;
+	int height = 32;
+	int count;
+	bool life;
 };
 
 #endif // !BLOCK_H

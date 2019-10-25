@@ -18,7 +18,7 @@ void Player::setup() {
 
 	init();
 	
-	//bullet.setup();
+	bullet.setup();
 }
 
 void Player::update(){

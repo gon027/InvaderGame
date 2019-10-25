@@ -7,6 +7,8 @@
 #include "UFO.h"
 #include "Enemys.h"
 #include "BaseScene.h"
+#include "Block.h"
+#include "Wall.h"
 
 class Game : public BaseScene{
 public:
@@ -22,6 +24,12 @@ public:
 	Enemy enemy;
 	Enemys enemys;
 	UFO ufo;
+	Block block;
+	WALL wall;
+
+	/*WALL wall2;
+	WALL wall3;
+	WALL wall4;*/
 
 	int count = 0;
 
