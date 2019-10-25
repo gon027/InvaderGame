@@ -21,11 +21,11 @@ void Game::start(){
 	count = 0;
 
 	player.setup();
-	//enemys.setup();
+	enemys.setup();
 	ufo.setup();
 
 	wall.load();
-	wall.init(200, 50);
+	wall.init(200, 250);
 
 	/*wall2.load();
 	wall3.load();
@@ -118,10 +118,12 @@ void Game::update(){
 			//©•ª‚Ì’e‚ª“G‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—(•¡”)
 			for (int i = 0; i < Enemys::h; i++) {
 				for (int j = 0; j < Enemys::w; j++) {
-					if (player.bullet.isCollision(enemys.enemys[i][j])) {
-						printfDx("HIT!!!\n");
-						enemys.enemys[i][j].life = false;
-						player.bullet.flag = false;
+					if (enemys.enemys[i][j].life) {
+						if (player.bullet.isCollision(enemys.enemys[i][j])) {
+							printfDx("HIT!!!\n");
+							enemys.enemys[i][j].life = false;
+							player.bullet.flag = false;
+						}
 					}
 				}
 			}
@@ -150,6 +152,7 @@ void Game::update(){
 				}
 			}
 
+			//’e‚ªƒuƒƒbƒN‚Ì‰ò‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
 			if (wall.bulletHitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
 				player.bullet.flag = false;
 			}
@@ -157,7 +160,6 @@ void Game::update(){
 	}
 
 
-	/*
 	enemys.shotFlag();
 	for (int i = 0; i < Enemys::h; i++) {
 		for (int j = 0; j < Enemys::w; j++) {
@@ -214,11 +216,15 @@ void Game::update(){
 							enemys.enemys[i][j].count = 0;
 						}
 					}
+
+					//’e‚ª•Ç‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
+					if (wall.bulletHitTest(enemys.enemys[i][j].bullet.x, enemys.enemys[i][j].bullet.y, enemys.enemys[i][j].bullet.width, enemys.enemys[i][j].bullet.height)) {
+						enemys.enemys[i][j].bullet.flag = false;
+					}
 				}
 			}
 		}
 	}
-	*/
 
 	
 	/*if (enemy.life) {
