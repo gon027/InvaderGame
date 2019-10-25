@@ -21,10 +21,12 @@ void Game::start(){
 	count = 0;
 
 	player.setup();
-	enemys.setup();
+	//enemys.setup();
 	ufo.setup();
 
-	//wall.load();
+	wall.load();
+	wall.init(200, 50);
+
 	/*wall2.load();
 	wall3.load();
 	wall4.load();
@@ -50,7 +52,8 @@ void Game::update(){
 		block++;
 	}
 
-	//wall.draw(100, 300);
+	wall.update();
+
 	//wall.update();
 	/*wall2.draw(100, 300);
 	wall3.draw(100, 300);
@@ -139,16 +142,22 @@ void Game::update(){
 			}
 
 			//íeÇ™ÉuÉçÉbÉNÇ…Ç†ÇΩÇ¡ÇΩÇ∆Ç´ÇÃèàóù
-			if (block()) {
+			if (block.getLife()) {
 				if(block.collision(player.bullet.x, player.bullet.y, player.bullet.width, player.height)) {
 					//printfDx("aaaaa\n");
 					block++;
 					player.bullet.flag = false;
 				}
 			}
+
+			if (wall.bulletHitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
+				player.bullet.flag = false;
+			}
 		}
 	}
 
+
+	/*
 	enemys.shotFlag();
 	for (int i = 0; i < Enemys::h; i++) {
 		for (int j = 0; j < Enemys::w; j++) {
@@ -209,6 +218,7 @@ void Game::update(){
 			}
 		}
 	}
+	*/
 
 	
 	/*if (enemy.life) {

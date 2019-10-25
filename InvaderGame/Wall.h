@@ -12,8 +12,7 @@ public:
 	void load();
 	void draw();
 	void update();
-
-	WALL& operator+=(int count);
+	bool bulletHitTest(int _x, int _y, int _w, int _h);
 
 private:
 	Block wall[4][4];

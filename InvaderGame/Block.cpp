@@ -56,6 +56,7 @@ bool Block::getLife(){
 Block & Block::operator++(int _count){
 	this->count = count + 1;
 	if (count == 4) {
+		count = 0;
 		life = false;
 	}
 	return *this;
