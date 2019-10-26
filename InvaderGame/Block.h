@@ -10,27 +10,21 @@ public:
 	void load();
 	void update();
 	void draw();
+	void addCount(int _value);
 	bool collision(int _x, int _y, int _width, int _height);
 
 	bool getLife();
-
 	void zeroLife();
 
 	//‰æ‘œ‚ğ“ü‚ê‘Ö‚¦‚é
 	Block& operator++(int _count);
 
-	//¶‘¶ƒtƒ‰ƒO‚ğ•Ô‚·
-	bool operator()() {
-		return this->life;
-	}
-
 private:
 	int img[4];
-	int image;
 	int x;
 	int y;
-	int width = 32;
-	int height = 32;
+	int width = 16;
+	int height = 16;
 	int count;
 	bool life;
 };

@@ -3,7 +3,7 @@
 #include "DxLib.h"
 
 Block::Block(){
-
+	
 }
 
 Block::~Block(){
@@ -19,7 +19,7 @@ void Block::init(int _x, int _y){
 
 void Block::load(){
 	int error;
-	error = LoadDivGraph("image/block_test.png", 4, 4, 1, width, height, img);
+	error = LoadDivGraph("image/block16.png", 4, 4, 1, width, height, img);
 	if (error != 0) {
 		printfDx("Block::LOADIMAHGE_ERROR");
 	}
@@ -36,6 +36,14 @@ void Block::draw(){
 	error = DrawGraph(x, y, img[count], TRUE);
 	if (error == -1) {
 		printfDx("Block::DRAW_ERROR\n");
+	}
+}
+
+void Block::addCount(int _value){
+	count = count + _value;
+	if (count >= 4) {
+		count = 0;
+		life = false;
 	}
 }
 
@@ -58,10 +66,6 @@ void Block::zeroLife(){
 }
 
 Block & Block::operator++(int _count){
-	this->count = count + 1;
-	if (count == 4) {
-		count = 0;
-		life = false;
-	}
+	addCount(1);
 	return *this;
 }

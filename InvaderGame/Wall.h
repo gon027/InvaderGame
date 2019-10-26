@@ -17,6 +17,7 @@ public:
 
 private:
 	Block wall[4][4];
+	int size = 16;
 };
 
 #endif // !WALL_H

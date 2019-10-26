@@ -36,13 +36,14 @@ void Enemys::draw(){
 	
 }
 
-void Enemys::shotFlag(){
+void Enemys::ableBullet(){
+	int flag = GetRand(1);
+
 	//配列の一番外側のエイリアンだけが弾を打てるようにする
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
 			int index = i + 1;
-			//printfDx("aaaa\n");
-			if (index >= h || enemys[index][j].life == false) {
+			if (index >= h || enemys[index][j].life == false){
 				enemys[i][j].shotflag = true;
 			}
 			if (enemys[index][j].life == true) {

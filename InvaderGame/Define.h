@@ -1,7 +1,7 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
-#define FULL_SCREEN
+//#define FULL_SCREEN
 
 #define OR ||
 #define AND &&
@@ -9,32 +9,35 @@
 namespace Window {
 #ifdef FULL_SCREEN
 	//画面サイズ
-	static const int WIDTH = 1440;
-	static const int HEIGHT = 900;
+	constexpr int WIDTH = 1440;
+	constexpr int HEIGHT = 900;
 
 	//画面の大きさ
-	static const int LEFT = 400;
-	static const int MIDDLE = 640;
-	static const int RIGHT = 400;
-	static const int EDGE = LEFT + MIDDLE + RIGHT;
+	constexpr int LEFT = 400;
+	constexpr int MIDDLE = 640;
+	constexpr int RIGHT = 400;
+	constexpr int EDGE = LEFT + MIDDLE + RIGHT;
 
 	//Actorの移動範囲
-	static const int WALL_L = LEFT;
-	static const int WALL_R = LEFT + MIDDLE;
+	constexpr int WALL_L = LEFT;
+	constexpr int WALL_R = LEFT + MIDDLE;
+
+	constexpr int YOUT = 800;
 #else
 	//画面サイズ
 	constexpr int WIDTH = 640;
 	constexpr int HEIGHT = 480;
 
 	//画面の大きさ
-	static const int LEFT = 0;
-	static const int MIDDLE = 0;
-	static const int RIGHT = 0;
-	static const int EDGE = LEFT + MIDDLE + RIGHT;
+	constexpr int LEFT = 0;
+	constexpr int MIDDLE = WIDTH / 2;
+	constexpr int RIGHT = WIDTH;
 
 	//Actorの移動範囲
-	static const int WALL_L = LEFT;
-	static const int WALL_R = LEFT + MIDDLE;
+	constexpr int WALL_L = LEFT;
+	constexpr int WALL_R = LEFT + MIDDLE;
+
+	constexpr int YOUT = HEIGHT;
 #endif // FULL_SCREEN
 }
 

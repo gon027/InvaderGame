@@ -18,7 +18,7 @@ public:
 	void init(int _x, int _y) override;
 	void move() override;
 	void shot();
-
+	void randFlag();
 
 public:
 	Bullet bullet;

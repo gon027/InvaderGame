@@ -1,12 +1,14 @@
 #include "Actor.h"
 
+#include "DxLib.h"
 #include "Bullet.h"
 
 bool Actor::isActorCollision(Actor& actor){
 	if (this->x <= actor.x + actor.width 
 		&& this->x + width >= actor.x
 		&& this->y <= actor.y + actor.height
-		&& this->y + height >= actor.y) {
+		&& this->y + height >= actor.y) 
+	{
 		//printfDx("isActorCollision\n");
 		return true;
 	}
@@ -18,7 +20,8 @@ bool Actor::isBulletCollision(Bullet& bullet){
 	if (x <= bullet.x + bullet.width
 		&& x + width >= bullet.x
 		&& y <= bullet.y + bullet.height
-		&& y + height >= bullet.y) {
+		&& y + height >= bullet.y) 
+	{
 		//printfDx("isBulletCollision\n");
 		return true;
 	}

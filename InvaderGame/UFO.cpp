@@ -59,8 +59,7 @@ void UFO::move() {
 }
 
 void UFO::randPoint(){
-	//int flag = GetRand(1);
-	int flag = 1;
+	int flag = GetRand(1);
 
 #ifdef FULL_SCREEN
 	if (flag == 0) {

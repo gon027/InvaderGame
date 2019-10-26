@@ -1,7 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include "DxLib.h"
+
 
 class Bullet;
 
@@ -9,6 +9,9 @@ class Actor {
 public:
 	Actor() {};
 	virtual ~Actor() {};
+
+	bool isActorCollision(Actor& enemy);        //Actor同士の当たり判定
+	bool isBulletCollision(Bullet& bullet);	    //Bulletの当たり判定
 
 protected:
 	virtual void setup()  = 0;      //主に画像をメモリに読み込む処理
@@ -23,13 +26,10 @@ protected:
 	void DrawImage(int x, int y);               //画像描画
 
 public:
-	bool isActorCollision(Actor& enemy);        //Actor同士の当たり判定
-	bool isBulletCollision(Bullet& bullet);	    //Bulletの当たり判定
-
-public:
-	int img;		//画像ハンドル
 	int x;
 	int y;
+
+	int img;		//画像ハンドル
 	int width;
 	int height;
 	int xspeed;

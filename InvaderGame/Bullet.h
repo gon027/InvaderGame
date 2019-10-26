@@ -11,24 +11,23 @@ public:
 	~Bullet();
 
 	void setup();
-	void create(int _x, int _y);
+	void init(int _x, int _y, int _speed, unsigned int _color);
 	void draw();
 	void move();
+	bool isLife();
+	bool randBullet();
 
 	bool isCollision(Actor& actor);
 	bool isBCollision(const Bullet& bullet);
 
-	void LoadBulletImage(const char* path);
-	void DrawImage(int x, int y);
-
 public:
-	int img;	//‰æ‘œƒnƒ“ƒhƒ‹
 	int x;
 	int y;
-	int width = 50;
-	int height = 50;
-	int speed = 5;
-	bool flag;
+	int width;
+	int height;
+	int speed;
+	bool life;
+	unsigned int color;
 };
 
 #endif // !BULLET_H

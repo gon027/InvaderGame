@@ -4,6 +4,7 @@
 #include "Define.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "KeyManager.h"
 
 Player::Player(){
 
@@ -17,11 +18,10 @@ void Player::setup() {
 	LoadActorImage("image/player.png");
 
 	init();
-	
-	bullet.setup();
 }
 
 void Player::update(){
+	inputKey();
 	draw();
 	move();
 }
@@ -47,6 +47,20 @@ void Player::draw(){
 }
 
 void Player::move() {
+	if (key[KEY_INPUT_S] >= 1) {
+		x -= xspeed;
+	}
+
+	if (key[KEY_INPUT_F] >= 1) {
+		x += xspeed;
+	}
+
+	if (key[KEY_INPUT_J] >= 1) {
+		if (bullet.isLife() == false) {
+			bullet.init(x + (width / 2), y - (bullet.height), -15, GetColor(255, 0, 0));
+		}
+	}
+
 #ifdef FULL_SCREEN
 	if (x <= Window::WALL_L) {
 		x = Window::WALL_L;
@@ -64,6 +78,4 @@ void Player::move() {
 		x = Window::WIDTH - width;
 	}
 #endif // FULL_SCREEN
-
-	
 }
