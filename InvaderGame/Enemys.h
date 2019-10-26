@@ -17,8 +17,8 @@ public:
 	void shotFlag();
 
 public:
-	static const int w = 3;
-	static const int h = 3;
+	static const int w = 11;
+	static const int h = 5;
 
 	Enemy enemys[h][w];
 

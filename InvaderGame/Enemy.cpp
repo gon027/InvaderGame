@@ -22,7 +22,7 @@ void Enemy::setup(){
 
 void Enemy::update(){
 	//printfDx("Enemy::update\n");
-	count++;
+	//count++;
 	move();
 }
 
@@ -57,7 +57,7 @@ void Enemy::move(){
 	}
 
 	//x座標の画面外判定
-	if (x <= 0 OR x + width >= Window::WIDTH) {
+	if (x <= Window::WALL_L || x + width >= Window::WALL_R - width) {
 		//xspeed = -xspeed;
 		turnflag = true;
 	}
@@ -68,23 +68,23 @@ void Enemy::move(){
 		//turnflag = false;
 	}*/
 
-	/*
+	
 	//y座標の画面外判定
 	if (y <= 0) {
-		yspeed = -yspeed;
+		life = false;
 	}
 
 	if (y + height >= Window::HEIGHT) {
-		yspeed = -yspeed;
-	}*/
+		life = false;
+	}
 }
 
 void Enemy::shot(){
 	//printfDx("Enemy::shot\n");
 	count++;
-	if (count == 60) {
+	/*if (count == 60) {
 		if (bullet.flag == false) {
-			bullet.flag = true;
+			//bullet.flag = true;
 			bullet.create(this->x + width / 2, this->y + height);
 		}
 	}
@@ -96,5 +96,5 @@ void Enemy::shot(){
 			bullet.flag = true;
 			count = 0;
 		}
-	}
+	}*/
 }

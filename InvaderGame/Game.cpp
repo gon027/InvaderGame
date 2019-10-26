@@ -4,13 +4,7 @@
 #include "KeyManager.h"
 
 Game::Game(){
-	/*count = 0;
 
-	player.setup();
-	enemys.setup();
-	ufo.setup();
-
-	block.load();*/
 }
 
 Game::~Game(){
@@ -28,16 +22,8 @@ void Game::start(){
 	//alien.init(50, 50);
 
 	wall.load();
-	wall.init(200, 50);
+	wall.init(500, 400);
 
-	/*wall2.load();
-	wall3.load();
-	wall4.load();
-	*/
-
-	block.load();
-	block.init(400, 100);
-	
 
 	//enemy.start();
 	//enemy.paint(100, 100);
@@ -50,18 +36,9 @@ void Game::update(){
 	inputKey();
 	//DrawBox(0, 430, Window::WIDTH, Window::HEIGHT, GetColor(0, 0, 0), TRUE);
 
-	block.update();
-	if(key[KEY_INPUT_B] == 1) {
-		block++;
-	}
-
+	
 	wall.update();
 
-	//wall.update();
-	/*wall2.draw(100, 300);
-	wall3.draw(100, 300);
-	wall4.draw(100, 300);
-	*/
 
 	if (player.life) {
 		player.update();
@@ -113,8 +90,9 @@ void Game::update(){
 			//UFOÇ…Ç†ÇΩÇ¡ÇΩÇ∆Ç´ÇÃèàóù
 			if (player.bullet.isCollision(ufo)) {
 				if (ufo.life) {
-					printfDx("UFO::HIT!!\n");
+					//printfDx("UFO::HIT!!\n");
 					ufo.life = false;
+					player.bullet.flag = false;
 				}
 			}
 
@@ -164,7 +142,7 @@ void Game::update(){
 
 	//alien.update();
 
-	/*
+	
 	enemys.shotFlag();
 	for (int i = 0; i < Enemys::h; i++) {
 		for (int j = 0; j < Enemys::w; j++) {
@@ -200,7 +178,7 @@ void Game::update(){
 				if (enemys.enemys[i][j].shotflag) {
 					//ìGÇÃíeÇ™ê∂ê¨Ç≥ÇÍÇÈèàóù
 					if (enemys.enemys[i][j].bullet.flag == false) {
-						enemys.enemys[i][j].bullet.flag = true;
+						//enemys.enemys[i][j].bullet.flag = true;
 						enemys.enemys[i][j].bullet.create(enemys.enemys[i][j].x, enemys.enemys[i][j].y);
 						//enemys.enemys[i][j].bullet.create(100, 100);
 					}
@@ -232,7 +210,7 @@ void Game::update(){
 				}
 			}
 		}
-	}*/
+	}
 	
 	
 	/*if (enemy.life) {

@@ -54,11 +54,7 @@ bool Block::getLife(){
 }
 
 void Block::zeroLife(){
-	this->count = 3;
-	if (count == 3) {
-		count = 0;
-		life = false;
-	}
+	life = false;
 }
 
 Block & Block::operator++(int _count){

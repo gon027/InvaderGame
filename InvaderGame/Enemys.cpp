@@ -18,6 +18,7 @@ void Enemys::setup(){
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
 			enemys[i][j].setup();
+			enemys[i][j].init(x + j * 50, y + i * 50);
 		}
 	}
 }
@@ -27,7 +28,7 @@ void Enemys::update(){
 }
 
 void Enemys::init() {
-	x = 50;
+	x = Window::WALL_L;
 	y = 50;
 }
 

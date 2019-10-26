@@ -60,7 +60,6 @@ void WALL::ehitTest(int _x, int _y, int _w, int _h){
 			if (wall[i][j].getLife()) {
 				if (wall[i][j].collision(_x, _y, _w, _h)) {
 					wall[i][j].zeroLife();
-					
 				}
 			}
 		}
