@@ -6,6 +6,7 @@
 #include "Define.h"
 #include "SceneController.h"
 #include "Game.h"
+#include "BackGround.h"
 
 void init();
 void update();

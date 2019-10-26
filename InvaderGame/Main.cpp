@@ -4,21 +4,22 @@ Game game;
 
 SceneController sController;
 Status status;
-int image[4];
+BackGround back(0, 0, "image/back_test.png");
 
 void init() {
 	SetBackgroundColor(0, 255, 255);
 
 	game.start();
-	///LoadDivGraph("image/block_test.png", 4, 4, 1, 32, 32, image);
+
+	back.loadImage();
 
 	//status = Title;
 	//sController.start();
 }
 
 void update() {
-	game.update();
-	//DrawGraph(100, 100, image[0], TRUE);
+	back.draw();
+	//game.update();
 
 	
 	/*sController.update();
@@ -46,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine
 
 #ifdef FULL_SCREEN
 		//DrawBox(0, 0, Window::LEFT, Window::HEIGHT, GetColor(255, 0, 0), 1);
-		DrawBox(Window::LEFT, 0, Window::WALL_R, Window::HEIGHT, GetColor(0, 255, 0), 1);
+		//DrawBox(Window::LEFT, 0, Window::WALL_R, Window::HEIGHT, GetColor(0, 255, 0), 1);
 		//DrawBox(Window::WALL_R, 0, Window::EDGE, Window::HEIGHT, GetColor(0, 0, 255), 1);
 #endif
 	}

@@ -1,7 +1,7 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
-//#define FULL_SCREEN
+#define FULL_SCREEN
 
 #define OR ||
 #define AND &&
