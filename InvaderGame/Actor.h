@@ -14,9 +14,10 @@ protected:
 	virtual void setup()  = 0;      //å‚É‰æ‘œ‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Şˆ—
 	virtual void update() = 0;      //XVŠÖ”
 
-	virtual void init() = 0;        //‰Šú‰»ŠÖ”
-	virtual void draw() = 0;        //•`‰æŠÖ”
-	virtual void move() = 0;        //ˆÚ“®ŠÖ”
+	virtual void init() = 0;               //‰Šú‰»ŠÖ”
+	virtual void init(int _x, int _y) {};  //‰Šú‰»ŠÖ”
+	virtual void draw() = 0;               //•`‰æŠÖ”
+	virtual void move() = 0;               //ˆÚ“®ŠÖ”
 
 	void LoadActorImage(const char* path);      //‰æ‘œ“Ç‚İ‚İ
 	void DrawImage(int x, int y);               //‰æ‘œ•`‰æ

@@ -16,9 +16,6 @@ public:
 
 	void shotFlag();
 
-	//Ü‚è•Ô‚µ”»’èŠÖ”
-	
-
 public:
 	static const int w = 3;
 	static const int h = 3;

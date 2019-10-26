@@ -21,11 +21,14 @@ void Game::start(){
 	count = 0;
 
 	player.setup();
-	enemys.setup();
+	//enemys.setup();
 	ufo.setup();
 
+	alien.load();
+	alien.init(50, 50);
+
 	wall.load();
-	wall.init(200, 250);
+	wall.init(200, 50);
 
 	/*wall2.load();
 	wall3.load();
@@ -159,7 +162,9 @@ void Game::update(){
 		}
 	}
 
+	alien.update();
 
+	/*
 	enemys.shotFlag();
 	for (int i = 0; i < Enemys::h; i++) {
 		for (int j = 0; j < Enemys::w; j++) {
@@ -225,7 +230,7 @@ void Game::update(){
 			}
 		}
 	}
-
+	*/
 	
 	/*if (enemy.life) {
 		enemy.update();

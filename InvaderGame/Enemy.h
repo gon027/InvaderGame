@@ -15,10 +15,10 @@ public:
 public:
 	void draw() override;
 	void init() override;
+	void init(int _x, int _y) override;
 	void move() override;
 	void shot();
 
-	void paint(int _x, int _y);
 
 public:
 	Bullet bullet;

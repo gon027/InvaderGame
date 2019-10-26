@@ -9,6 +9,7 @@
 #include "BaseScene.h"
 #include "Block.h"
 #include "Wall.h"
+#include "Alien.h"
 
 class Game : public BaseScene{
 public:
@@ -26,6 +27,7 @@ public:
 	UFO ufo;
 	Block block;
 	WALL wall;
+	Alien alien;
 
 	/*WALL wall2;
 	WALL wall3;

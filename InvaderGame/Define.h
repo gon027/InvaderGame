@@ -25,6 +25,16 @@ namespace Window {
 	//‰æ–ÊƒTƒCƒY
 	constexpr int WIDTH = 640;
 	constexpr int HEIGHT = 480;
+
+	//‰æ–Ê‚Ì‘å‚«‚³
+	static const int LEFT = 0;
+	static const int MIDDLE = 0;
+	static const int RIGHT = 0;
+	static const int EDGE = LEFT + MIDDLE + RIGHT;
+
+	//Actor‚ÌˆÚ“®”ÍˆÍ
+	static const int WALL_L = LEFT;
+	static const int WALL_R = LEFT + MIDDLE;
 #endif // FULL_SCREEN
 }
 

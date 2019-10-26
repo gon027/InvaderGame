@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="SceneBase.h" />

@@ -23,7 +23,6 @@ void Enemy::setup(){
 void Enemy::update(){
 	//printfDx("Enemy::update\n");
 	count++;
-	draw();
 	move();
 }
 
@@ -35,6 +34,11 @@ void Enemy::init(){
 	this->turnflag = false;
 	this->count = 0;
 	this->shotflag = false;
+}
+
+void Enemy::init(int _x, int _y){
+	x = _x;
+	y = _y;
 }
 
 void Enemy::draw(){
@@ -93,9 +97,4 @@ void Enemy::shot(){
 			count = 0;
 		}
 	}
-}
-
-void Enemy::paint(int _x, int _y){
-	x = _x;
-	y = _y;
 }
