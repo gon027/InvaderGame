@@ -48,7 +48,7 @@ void Game::update(){
 	fps.Draw();
 
 	inputKey();
-	DrawBox(0, 430, Window::WIDTH, Window::HEIGHT, GetColor(0, 0, 0), TRUE);
+	//DrawBox(0, 430, Window::WIDTH, Window::HEIGHT, GetColor(0, 0, 0), TRUE);
 
 	block.update();
 	if(key[KEY_INPUT_B] == 1) {

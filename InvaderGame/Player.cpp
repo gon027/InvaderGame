@@ -27,8 +27,18 @@ void Player::update(){
 }
 
 void Player::init(){
+#ifdef FULL_SCREEN
+	this->x = Window::LEFT + (Window::MIDDLE / 2) - (width / 2);
+	this->y = 750;
+
+	//printfDx("%d\n", x);
+#else
 	this->x = (Window::WIDTH / 2) - (width / 2);
 	this->y = 362;
+
+#endif // !
+
+
 	this->xspeed = 5;
 	this->life = true;
 }

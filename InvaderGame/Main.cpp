@@ -4,10 +4,10 @@ Game game;
 
 SceneController sController;
 Status status;
-BackGround back(0, 0, "image/back_test.png");
+BackGround back(0, 0, "image/back_test2.png");
 
 void init() {
-	SetBackgroundColor(0, 255, 255);
+	SetBackgroundColor(0, 0, 0);
 
 	game.start();
 
@@ -19,7 +19,7 @@ void init() {
 
 void update() {
 	back.draw();
-	//game.update();
+	game.update();
 
 	
 	/*sController.update();
