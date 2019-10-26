@@ -35,7 +35,7 @@ void UFO::update() {
 }
 
 void UFO::init() {
-	this->y = 75;
+	
 	this->life = false;
 	this->interval = 0;
 }
@@ -47,25 +47,45 @@ void UFO::draw() {
 void UFO::move() {
 	x += xspeed;
 
-	if (x >=  Window::WIDTH + width) {
+#ifdef FULL_SCREEN
+	if (x >= Window::WALL_R - width || x <= Window::WALL_L) {
 		this->life = false;
 	}
-
-	if (x <= 0 - width) {
+#else
+	if (x >= Window::WIDTH + width || x <= 0 - width) {
 		this->life = false;
 	}
+#endif // FULL_SCREEN
 }
 
 void UFO::randPoint(){
-	int flag = GetRand(1);
+	//int flag = GetRand(1);
+	int flag = 1;
+
+#ifdef FULL_SCREEN
+	if (flag == 0) {
+		//左から右へ移動するようにする
+		this->x = Window::WALL_L;
+		this->xspeed = 2;
+	}
+	else if (flag = 1) {
+		//右から左へ移動するようにする
+		this->x = Window::WALL_R - width;
+		
+		this->xspeed = -2;
+	}
+	this->y = 128;
+#else
 	if (flag == 0) {
 		//右から左へ移動するようにする
 		this->x = 0 - width;
 		this->xspeed = 2;
-	}
+}
 	else if (flag = 1) {
 		//左から右へ移動するようにする
 		this->x = Window::WIDTH + width;
 		this->xspeed = -2;
 	}
+	this->y = 75;
+#endif // FULL_SCREEN
 }

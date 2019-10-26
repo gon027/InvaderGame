@@ -21,11 +21,11 @@ void Game::start(){
 	count = 0;
 
 	player.setup();
-	//enemys.setup();
+	enemys.setup();
 	ufo.setup();
 
-	alien.load();
-	alien.init(50, 50);
+	//alien.load();
+	//alien.init(50, 50);
 
 	wall.load();
 	wall.init(200, 50);
@@ -156,13 +156,13 @@ void Game::update(){
 			}
 
 			//’e‚ªƒuƒƒbƒN‚Ì‰ò‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
-			if (wall.bulletHitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
+			if (wall.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
 				player.bullet.flag = false;
 			}
 		}
 	}
 
-	alien.update();
+	//alien.update();
 
 	/*
 	enemys.shotFlag();
@@ -192,7 +192,10 @@ void Game::update(){
 					}
 				}
 
-				//printfDx("%d\n", enemys.enemys[i][j].shotflag);
+				//“G‚ª•Ç‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
+				if (enemys.enemys[i][j].life) {
+					wall.ehitTest(enemys.enemys[i][j].x, enemys.enemys[i][j].y, enemys.enemys[i][j].width, enemys.enemys[i][j].height);		
+				}
 
 				if (enemys.enemys[i][j].shotflag) {
 					//“G‚Ì’e‚ª¶¬‚³‚ê‚éˆ—
@@ -223,14 +226,14 @@ void Game::update(){
 					}
 
 					//’e‚ª•Ç‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
-					if (wall.bulletHitTest(enemys.enemys[i][j].bullet.x, enemys.enemys[i][j].bullet.y, enemys.enemys[i][j].bullet.width, enemys.enemys[i][j].bullet.height)) {
+					if (wall.hitTest(enemys.enemys[i][j].bullet.x, enemys.enemys[i][j].bullet.y, enemys.enemys[i][j].bullet.width, enemys.enemys[i][j].bullet.height)) {
 						enemys.enemys[i][j].bullet.flag = false;
 					}
 				}
 			}
 		}
-	}
-	*/
+	}*/
+	
 	
 	/*if (enemy.life) {
 		enemy.update();

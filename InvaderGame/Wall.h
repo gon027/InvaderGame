@@ -12,7 +12,8 @@ public:
 	void load();
 	void draw();
 	void update();
-	bool bulletHitTest(int _x, int _y, int _w, int _h);
+	bool hitTest(int _x, int _y, int _w, int _h);
+	void ehitTest(int _x, int _y, int _w, int _h);
 
 private:
 	Block wall[4][4];

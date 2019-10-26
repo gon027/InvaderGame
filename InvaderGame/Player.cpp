@@ -38,7 +38,6 @@ void Player::init(){
 
 #endif // !
 
-
 	this->xspeed = 5;
 	this->life = true;
 }
@@ -48,6 +47,15 @@ void Player::draw(){
 }
 
 void Player::move() {
+#ifdef FULL_SCREEN
+	if (x <= Window::WALL_L) {
+		x = Window::WALL_L;
+	}
+
+	if (x + width >= Window::WALL_R) {
+		x = Window::WALL_R - width;
+	}
+#else
 	if (x <= 0) {
 		x = 0;
 	}
@@ -55,4 +63,7 @@ void Player::move() {
 	if (x + width >= Window::WIDTH) {
 		x = Window::WIDTH - width;
 	}
+#endif // FULL_SCREEN
+
+	
 }

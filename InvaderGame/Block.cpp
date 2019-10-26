@@ -53,6 +53,14 @@ bool Block::getLife(){
 	return this->life;
 }
 
+void Block::zeroLife(){
+	this->count = 3;
+	if (count == 3) {
+		count = 0;
+		life = false;
+	}
+}
+
 Block & Block::operator++(int _count){
 	this->count = count + 1;
 	if (count == 4) {

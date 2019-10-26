@@ -14,6 +14,8 @@ public:
 
 	bool getLife();
 
+	void zeroLife();
+
 	//‰æ‘œ‚ð“ü‚ê‘Ö‚¦‚é
 	Block& operator++(int _count);
 

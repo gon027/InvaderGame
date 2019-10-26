@@ -1,7 +1,7 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
-#define FULL_SCREEN
+//#define FULL_SCREEN
 
 #define OR ||
 #define AND &&
@@ -37,12 +37,6 @@ namespace Window {
 	static const int WALL_R = LEFT + MIDDLE;
 #endif // FULL_SCREEN
 }
-
-namespace Alian{
-	static const int W = 3;
-	static const int H = 3;
-}
-
 
 enum Status {
 	Title = 0,
