@@ -18,9 +18,11 @@ void Enemy::setup(){
 }
 
 void Enemy::update(){
-	//printfDx("Enemy::update\n");
-	//count++;
+	draw();
 	move();
+	if (shotflag) {
+		shot();
+	}
 }
 
 void Enemy::init(){
@@ -76,20 +78,11 @@ void Enemy::move(){
 }
 
 void Enemy::shot(){
-	count++;
-	/*if (count == 60) {
-		if (bullet.life == false) {
-			//bullet.life = true;
-			bullet.init(this->x + width / 2, this->y + height);
-		}
+	if (bullet.life == false) {
+		bullet.init(this->x + width / 2, this->y + height, 1, GetColor(255, 255, 0));
 	}
 
 	if (bullet.life) {
 		bullet.draw();
-		bullet.y += 5;
-		if (bullet.y >= Window::HEIGHT) {
-			bullet.life = true;
-			count = 0;
-		}
-	}*/
+	}
 }

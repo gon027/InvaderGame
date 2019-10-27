@@ -43,11 +43,11 @@ void WALL::update(){
 bool WALL::hitTest(int _x, int _y, int _w, int _h){
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			if (wall[i][j].getLife()) {
-				if (wall[i][j].collision(_x, _y, _w, _h)) {
-					wall[i][j].addCount(1);
-					return true;
-				}
+			if (wall[i][j].getLife() == false) continue;
+
+			if (wall[i][j].collision(_x, _y, _w, _h)) {
+				wall[i][j].addCount(1);
+				return true;
 			}
 		}
 	}

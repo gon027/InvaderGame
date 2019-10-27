@@ -57,8 +57,12 @@ void Player::move() {
 
 	if (key[KEY_INPUT_J] >= 1) {
 		if (bullet.isLife() == false) {
-			bullet.init(x + (width / 2), y - (bullet.height), -15, GetColor(255, 0, 0));
+			bullet.init(x + (width / 2), y - (bullet.height), -3, GetColor(255, 0, 0));
 		}
+	}
+
+	if (bullet.isLife()) {
+		bullet.draw();
 	}
 
 #ifdef FULL_SCREEN

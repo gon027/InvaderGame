@@ -26,12 +26,12 @@ public:
 	Enemys enemys;
 	UFO ufo;
 	Block block;
-	WALL wall;
 	Alien alien;
 
-	/*WALL wall2;
+	WALL wall;
+	WALL wall2;
 	WALL wall3;
-	WALL wall4;*/
+	WALL wall4;
 
 	int count = 0;
 

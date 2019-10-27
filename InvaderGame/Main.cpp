@@ -4,7 +4,7 @@ Game game;
 
 SceneController sController;
 Status status;
-BackGround back(0, 0, "image/back_test2.png");
+BackGround back(0, 0, "image/back_game.png");
 
 void init() {
 	SetBackgroundColor(0, 0, 0);
@@ -12,6 +12,7 @@ void init() {
 	game.start();
 
 	back.loadImage();
+
 
 	//status = Title;
 	//sController.start();

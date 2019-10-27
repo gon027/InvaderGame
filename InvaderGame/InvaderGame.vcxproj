@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Alien.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="Block.h" />

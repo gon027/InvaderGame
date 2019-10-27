@@ -14,11 +14,13 @@ public:
 	void init();
 	void draw();
 
+	void move();
+
 	void ableBullet();
 
 public:
-	static const int w = 3;
-	static const int h = 4;
+	static const int w = 8;
+	static const int h = 5;
 
 	Enemy enemys[h][w];
 
