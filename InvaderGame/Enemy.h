@@ -18,15 +18,22 @@ public:
 	void init(int _x, int _y) override;
 	void move() override;
 	void shot();
-	void randFlag();
+	bool ableShotFlag();
+	void down();
+	void invxspeed();
+	bool wallJudge();
 
 public:
 	Bullet bullet;
 
+	int TIMEUP;
+
 	int count;
-	int interval = 0;
+	int count2;
+	int interval;
 	bool turnflag;
 	bool shotflag;
+	bool ableshot;
 };
 
 #endif // !ENEMY_H

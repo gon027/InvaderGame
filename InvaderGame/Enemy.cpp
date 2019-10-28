@@ -3,6 +3,8 @@
 #include "DxLib.h"
 #include "Define.h"
 
+static int timeup = 30;
+
 Enemy::Enemy(){
 
 }
@@ -16,20 +18,22 @@ void Enemy::setup(){
 }
 
 void Enemy::update(){
-	draw();
-	//move();
-	if (shotflag) {
+	if (shotflag && ableShotFlag() == 1) {
 		shot();
 	}
 }
 
 void Enemy::init(){
-	this->xspeed = 10;
+	TIMEUP = 30;
+	this->xspeed = 6;
 	this->yspeed = 10;
 	this->life = true;
 	this->turnflag = false;
 	this->count = 0;
+	this->interval = 0;
 	this->shotflag = false;
+	this->ableshot = false;
+	count2 = 0;
 }
 
 void Enemy::init(int _x, int _y){
@@ -41,30 +45,19 @@ void Enemy::init(int _x, int _y){
 void Enemy::draw(){
 	//printfDx("Enemy::draw\n");
 	DrawImage(this->x, this->y);
+	bullet.draw();
 }
 
 void Enemy::move(){
 	//printfDx("Enemy::move\n");
 	interval++;
 
-	if (interval == 30) {
+	if (interval == timeup) {
 		x += xspeed;
+		shot();
 		interval = 0;
 	}
 
-	//x座標の画面外判定
-	if (x <= Window::WALL_L || x + width >= Window::WALL_R - width) {
-		//xspeed = -xspeed;
-		turnflag = true;
-	}
-
-	/*if (turnflag) {
-		printfDx("TRUE\n");
-		xspeed = -xspeed;
-		//turnflag = false;
-	}*/
-
-	
 	//y座標の画面外判定
 	if (y <= 0) {
 		life = false;
@@ -76,11 +69,38 @@ void Enemy::move(){
 }
 
 void Enemy::shot(){
-	if (bullet.life == false) {
-		bullet.init(this->x + width / 2, this->y + height * 2, 10, GetColor(255, 255, 0));
+	if (shotflag && ableShotFlag() == 1) {
+		if (bullet.life == false) {
+			bullet.init(this->x + width / 2, this->y + height * 2, 10, GetColor(255, 255, 0));
+		}
 	}
 
-	if (bullet.life) {
-		bullet.draw();
+
+	
+}
+
+bool Enemy::ableShotFlag(){
+	int rand = GetRand(1);
+
+	//エイリアンが弾を打つか打たないか
+	if (rand == 1) {
+		return true;
 	}
+
+	return false;
+}
+
+void Enemy::down(){
+	y += yspeed;
+}
+
+void Enemy::invxspeed(){
+	xspeed = -xspeed;
+}
+
+bool Enemy::wallJudge(){
+	if (x <= Window::WALL_L || x + width >= Window::WALL_R) {
+		return true;
+	}
+	return false;
 }

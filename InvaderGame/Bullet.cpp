@@ -25,8 +25,10 @@ void Bullet::init(int _x, int _y, int _speed, unsigned int _color){
 	this->life = true;
 }
 
-void Bullet::draw(){
-	DrawLine(x, y, x, y + height, color, width);
+void Bullet::draw() {
+	if (life) {
+		DrawLine(x, y, x, y + height, color, width);
+	}
 	move();
 }
 

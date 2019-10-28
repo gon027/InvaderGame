@@ -19,8 +19,8 @@ public:
 	void ableBullet();
 
 public:
-	static const int w = 3;
-	static const int h = 2;
+	static const int w = 11;
+	static const int h = 5;
 
 	Enemy alien[h][w];
 
@@ -29,6 +29,8 @@ public:
 private:
 	int x;
 	int y;
+	bool leftTurn;
+	bool stop;
 };
 
 #endif // !ENEMYS_H
