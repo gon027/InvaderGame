@@ -38,7 +38,7 @@ void Game::init(){
 
 	//キャラクター類と壁の初期化
 	player.init();
-	alien.init(Window::WALL_L, 220 + 30 * enemyOffset);
+	alien.init(Window::WALL_L + 76 - 12, 220 + 30 * enemyOffset);
 	ufo.init();
 
 	int xx = Window::WALL_L + 76;
@@ -47,8 +47,6 @@ void Game::init(){
 	wall3.init(xx + 140 * 2, 640);
 	wall4.init(xx + 140 * 3, 640);
 }
-
-int count = 0;
 
 void Game::update(){
 	fps.Update();
