@@ -171,6 +171,7 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Define.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneController.h" />
+    <ClInclude Include="singleton.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="UFO.h" />
     <ClInclude Include="Wall.h" />

@@ -32,7 +32,7 @@ void Bullet::draw(){
 
 void Bullet::move(){
 	y += speed; 
-	if (y <= 0 || y >= Window::YOUT - height) {
+	if (y <= 128 || y >= Window::YOUT - height) {
 		life = false;
 	}
 }

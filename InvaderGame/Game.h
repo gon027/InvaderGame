@@ -27,6 +27,7 @@ public:
 	UFO ufo;
 	Block block;
 	Alien alien;
+	WALL walls[4];
 
 	WALL wall;
 	WALL wall2;
@@ -37,6 +38,7 @@ public:
 
 	bool flag = false;
 	int timer = 0;
+	int score;
 };
 
 #endif // !GAME_H

@@ -73,7 +73,7 @@ void UFO::randPoint(){
 		
 		this->xspeed = -2;
 	}
-	this->y = 128;
+	this->y = 144;
 #else
 	if (flag == 0) {
 		//‰E‚©‚ç¶‚ÖˆÚ“®‚·‚é‚æ‚¤‚É‚·‚é

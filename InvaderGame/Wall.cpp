@@ -27,7 +27,7 @@ void WALL::load(){
 void WALL::draw(){
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			wall[i][j].draw();
+ 			wall[i][j].draw();
 		}
 	}
 }
