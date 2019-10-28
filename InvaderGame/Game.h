@@ -19,6 +19,11 @@ public:
 	void start() override;
 	void update() override;
 
+	void playerLoop();
+	void enemyLoop();
+	void ufoLoop();
+	void wallLoop();
+
 public:
 	Fps fps;
 	Player player;
@@ -26,8 +31,7 @@ public:
 	Enemys enemys;
 	UFO ufo;
 	Block block;
-	Alien alien;
-	WALL walls[4];
+	//Alien alien;
 
 	WALL wall;
 	WALL wall2;
@@ -39,6 +43,8 @@ public:
 	bool flag = false;
 	int timer = 0;
 	int score;
+	int allenemy;
+	bool isRunning;
 };
 
 #endif // !GAME_H

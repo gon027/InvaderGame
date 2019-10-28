@@ -19,7 +19,7 @@ void Enemy::setup(){
 
 void Enemy::update(){
 	draw();
-	move();
+	//move();
 	if (shotflag) {
 		shot();
 	}
@@ -79,7 +79,7 @@ void Enemy::move(){
 
 void Enemy::shot(){
 	if (bullet.life == false) {
-		bullet.init(this->x + width / 2, this->y + height, 10, GetColor(255, 255, 0));
+		bullet.init(this->x + width / 2, this->y + height * 2, 10, GetColor(255, 255, 0));
 	}
 
 	if (bullet.life) {

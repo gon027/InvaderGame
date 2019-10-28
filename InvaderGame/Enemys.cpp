@@ -29,7 +29,7 @@ void Enemys::update(){
 
 void Enemys::init() {
 	x = Window::WALL_L;
-	y = 150;
+	y = 200;
 }
 
 void Enemys::draw(){

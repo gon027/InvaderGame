@@ -13,7 +13,10 @@ Game::~Game(){
 
 void Game::start(){
 	count = 0;
+
 	score = 0;
+	allenemy = Enemys::h * Enemys::w;
+	isRunning = true;
 
 	player.setup();
 	enemys.setup();
@@ -48,17 +51,22 @@ void Game::update(){
 	SetFontSize(32);
 	DrawString(400 + 20, 50, "SCORE< 1 >", GetColor(0, 255, 255));
 	DrawString(640, 50, "HI-SCORE", GetColor(0, 0, 255));
-	DrawString(840 - 20, 50, "SCORE< 2 >", GetColor(255, 255, 0));
+	//DrawString(840 - 20, 50, "SCORE< 2 >", GetColor(255, 255, 0));
 
 	DrawFormatString(400 + 20 + 37, 90, GetColor(255, 255, 255), "%05d", score);
 	DrawFormatString(640 + 17, 90, GetColor(0, 255, 255), "%05d", 0);
-	DrawFormatString(840 + 17, 90, GetColor(255, 255, 255), "%05d", 0);
+	//DrawFormatString(840 + 17, 90, GetColor(255, 255, 255), "%05d", 0);
 
-	//ï«ÇÃèàóù
-	wall.update();
-	wall2.update();
-	wall3.update();
-	wall4.update();
+	
+	wallLoop();
+	playerLoop();
+	enemyLoop();
+	ufoLoop();
+	
+	fps.Wait();
+}
+
+void Game::playerLoop(){
 
 	if (player.life) {
 		player.update();
@@ -94,7 +102,18 @@ void Game::update(){
 						//printfDx("HIT!!!\n");
 						enemys.enemys[i][j].life = false;
 						player.bullet.life = false;
-						score += 500;
+
+						if (i == 4 || i == 3) {
+							score += 10;
+						}
+						else if (i == 2 || i == 1) {
+							score += 20;
+						}
+						else if (i == 0) {
+							score += 30;
+						}
+
+						allenemy--;
 					}
 
 					//é©ï™ÇÃíeÇ™ìGÇÃíeÇ…ìñÇΩÇ¡ÇΩéûÇÃèàóù
@@ -128,19 +147,19 @@ void Game::update(){
 		}
 	}
 
-	//alien.update();
+}
 
-	
+void Game::enemyLoop(){
 	enemys.move();
 	enemys.ableBullet();
 	for (int i = 0; i < Enemys::h; i++) {
 		for (int j = 0; j < Enemys::w; j++) {
 			//ìGÇ™ÉâÉCÉtÇ™Ç»Ç¢èÍçáÅiÉXÉLÉbÉvÅj
 			if (enemys.enemys[i][j].life == false) continue;
-			
+
 			//ìGÇ™ï«Ç…Ç†ÇΩÇ¡ÇΩÇ∆Ç´ÇÃèàóù
 			if (enemys.enemys[i][j].life) {
-				wall.ehitTest(enemys.enemys[i][j].x, enemys.enemys[i][j].y, enemys.enemys[i][j].width, enemys.enemys[i][j].height);		
+				wall.ehitTest(enemys.enemys[i][j].x, enemys.enemys[i][j].y, enemys.enemys[i][j].width, enemys.enemys[i][j].height);
 			}
 
 			if (enemys.enemys[i][j].shotflag) {
@@ -180,9 +199,17 @@ void Game::update(){
 			}
 		}
 	}
-	
+}
+
+void Game::ufoLoop(){
 	//UFOÇÃèàóù
 	ufo.update();
-	
-	fps.Wait();
+}
+
+void Game::wallLoop(){
+	//ï«ÇÃèàóù
+	wall.update();
+	wall2.update();
+	wall3.update();
+	wall4.update();
 }
