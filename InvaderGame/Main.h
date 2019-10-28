@@ -7,6 +7,7 @@
 #include "SceneController.h"
 #include "Game.h"
 #include "BackGround.h"
+#include "AudioManager.h"
 
 void init();
 void update();

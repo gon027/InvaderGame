@@ -24,10 +24,11 @@ void Game::setup(){
 	alien.setup();
 	ufo.setup();
 
-	wall1.setup();
+	/*wall1.setup();
 	wall2.setup();
 	wall3.setup();
 	wall4.setup();
+	*/
 
 	init();
 }
@@ -42,10 +43,11 @@ void Game::init(){
 	ufo.init();
 
 	int xx = Window::WALL_L + 76;
-	wall1.init(xx, 640);
+	/*wall1.init(xx, 640);
 	wall2.init(xx + 140, 640);
 	wall3.init(xx + 140 * 2, 640);
 	wall4.init(xx + 140 * 3, 640);
+	*/
 }
 
 void Game::update(){
@@ -64,7 +66,7 @@ void Game::update(){
 	//DrawFormatString(840 + 17, 90, GetColor(255, 255, 255), "%05d", 0);
 
 	
-	wallLoop();
+	//wallLoop();
 	playerLoop();
 	enemyLoop();
 	ufoLoop();
@@ -170,8 +172,9 @@ void Game::playerLoop(){
 }
 
 void Game::enemyLoop(){
-	alien.move();
-	alien.ableBullet();
+	alien.draw();		//描画
+	alien.move();		//移動
+	alien.ableBullet();		//打てる球の探索
 	for (int i = 0; i < Alien::h; i++) {
 		for (int j = 0; j < Alien::w; j++) {
 			//敵がライフがない場合（スキップ）
@@ -195,9 +198,9 @@ void Game::enemyLoop(){
 					}
 
 					//画面外処理（画面外にカウントを0にする）
-					if (alien.alien[i][j].bullet.isLife() == false) {
+					/*if (alien.alien[i][j].bullet.isLife() == false) {
 						alien.alien[i][j].count = 0;
-					}
+					}*/
 				}
 
 				//弾が壁にあたったときの処理

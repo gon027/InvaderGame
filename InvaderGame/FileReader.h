@@ -6,7 +6,7 @@
 using namespace std;
 #include "singleton.h"
 
-class FileReader : singleton<FileReader>{
+class FileReader : public singleton<FileReader>{
 public:
 	friend class singleton<FileReader>;
 

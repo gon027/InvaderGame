@@ -2,9 +2,10 @@
 #define SCENECONTROLLER_H
 
 #include "Define.h"
+#include "singleton.h"
 class BaseScene;
 
-class SceneController {
+class SceneController : public singleton<SceneController>{
 public:
 	SceneController();
 	~SceneController();

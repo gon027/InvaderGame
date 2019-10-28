@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Bullet.cpp" />

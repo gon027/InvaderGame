@@ -9,6 +9,8 @@ BackGround back(0, 0, "image/back_game.png");
 void init() {
 	SetBackgroundColor(0, 0, 0);
 
+	singleton<AudioManager>::getInstance().read("sound/se1.mp3", 0);
+
 	game.setup();
 
 	back.loadImage();

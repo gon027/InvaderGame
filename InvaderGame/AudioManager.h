@@ -1,18 +1,21 @@
 #ifndef AUDIOMANAGER_H
 #define AUDIOMANAGER_H
 
-class AudioManager {
-private:
-	AudioManager();
+#include "singleton.h"
 
-	static AudioManager* sound;
-
-
-
+class AudioManager : public singleton<AudioManager>{
 public:
-	void play(int);
-};
+	friend class singleton<AudioManager>;
 
-static AudioManager::AudioManager* sound == nullptr;
+	void read(const char* _path, int _index);
+	void play(int _index);
+
+protected:
+	AudioManager() = default;
+	~AudioManager() = default;
+
+private:
+	int sound[10];
+};
 
 #endif // !AUDIOMANAGER_H

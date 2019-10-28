@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "KeyManager.h"
+#include "AudioManager.h"
 
 Player::Player(){
 
@@ -56,12 +57,11 @@ void Player::move() {
 	if (key[KEY_INPUT_J] >= 1) {
 		if (bullet.isLife() == false) {
 			bullet.init(x + (width / 2), y - (bullet.height * 2), -15, GetColor(255, 0, 0));
+			//singleton<AudioManager>::getInstance().play(0);
 		}
 	}
 
-	if (bullet.isLife()) {
-		bullet.draw();
-	}
+	bullet.draw();
 
 #ifdef FULL_SCREEN
 	if (x <= Window::WALL_L) {
