@@ -11,7 +11,7 @@ TitleScene::~TitleScene(){
 
 }
 
-void TitleScene::start(){
+void TitleScene::setup(){
 
 }
 

@@ -13,8 +13,8 @@ SceneController::~SceneController(){
 	delete scene;
 }
 
-void SceneController::start(){
-	scene->start();
+void SceneController::setup(){
+	scene->setup();
 }
 
 void SceneController::update(){

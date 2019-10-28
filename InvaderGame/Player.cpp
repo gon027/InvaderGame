@@ -16,8 +16,6 @@ Player::~Player(){
 
 void Player::setup() {
 	LoadActorImage("image/player.png");
-
-	init();
 }
 
 void Player::update(){

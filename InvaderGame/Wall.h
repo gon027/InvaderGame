@@ -9,7 +9,7 @@ public:
 	~WALL();
 
 	void init(int _x, int _y);
-	void load();
+	void setup();
 	void draw();
 	void update();
 	bool hitTest(int _x, int _y, int _w, int _h);

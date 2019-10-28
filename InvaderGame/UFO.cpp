@@ -6,7 +6,7 @@
 constexpr int TIME = 100;
 
 UFO::UFO(){
-	setup();
+
 }
 
 UFO::~UFO(){
@@ -35,7 +35,6 @@ void UFO::update() {
 }
 
 void UFO::init() {
-	
 	this->life = false;
 	this->interval = 0;
 }

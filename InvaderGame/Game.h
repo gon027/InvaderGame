@@ -3,20 +3,18 @@
 
 #include "Fps.h"
 #include "Player.h"
-#include "Enemy.h"
-#include "UFO.h"
-#include "Enemys.h"
-#include "BaseScene.h"
-#include "Block.h"
-#include "Wall.h"
 #include "Alien.h"
+#include "UFO.h"
+#include "Wall.h"
+#include "BaseScene.h"
 
 class Game : public BaseScene{
 public:
 	Game();
 	~Game();
 
-	void start() override;
+	void setup() override;		//最初に1回だけ呼ばれる
+	void init();				//敵が倒されると呼ばれる
 	void update() override;
 
 	void playerLoop();
@@ -27,13 +25,9 @@ public:
 public:
 	Fps fps;
 	Player player;
-	Enemy enemy;
-	Enemys enemys;
+	Alien alien;
 	UFO ufo;
-	Block block;
-	//Alien alien;
-
-	WALL wall;
+	WALL wall1;
 	WALL wall2;
 	WALL wall3;
 	WALL wall4;
@@ -42,9 +36,11 @@ public:
 
 	bool flag = false;
 	int timer = 0;
-	int score;
-	int allenemy;
+	int score;			//スコア
+	int hiScore;		//ハイスコア
+	int allEnemyCount;
 	bool isRunning;
+	int enemyOffset;
 };
 
 #endif // !GAME_H

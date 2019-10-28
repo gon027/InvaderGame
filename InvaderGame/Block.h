@@ -7,7 +7,7 @@ public:
 	~Block();
 
 	void init(int _x, int _y);
-	void load();
+	void setup();
 	void update();
 	void draw();
 	void addCount(int _value);

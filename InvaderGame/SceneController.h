@@ -9,7 +9,7 @@ public:
 	SceneController();
 	~SceneController();
 
-	void start();
+	void setup();
 	void update();
 	void changeScene(Status _status);
 

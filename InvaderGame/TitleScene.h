@@ -8,7 +8,7 @@ public:
 	TitleScene();
 	~TitleScene();
 
-	void start() override;
+	void setup() override;
 	void update() override;
 };
 

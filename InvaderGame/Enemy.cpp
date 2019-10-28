@@ -4,7 +4,7 @@
 #include "Define.h"
 
 Enemy::Enemy(){
-	//setup();
+
 }
 
 Enemy::~Enemy(){
@@ -13,8 +13,6 @@ Enemy::~Enemy(){
 
 void Enemy::setup(){
 	LoadActorImage("image/enemy_test.png");
-
-	init();
 }
 
 void Enemy::update(){
@@ -26,7 +24,6 @@ void Enemy::update(){
 }
 
 void Enemy::init(){
-	//printfDx("Enemy::init\n");
 	this->xspeed = 10;
 	this->yspeed = 10;
 	this->life = true;
@@ -38,6 +35,7 @@ void Enemy::init(){
 void Enemy::init(int _x, int _y){
 	x = _x;
 	y = _y;
+	init();
 }
 
 void Enemy::draw(){

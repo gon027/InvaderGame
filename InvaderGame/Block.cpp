@@ -17,7 +17,7 @@ void Block::init(int _x, int _y){
 	life = true;
 }
 
-void Block::load(){
+void Block::setup(){
 	int error;
 	error = LoadDivGraph("image/block16.png", 4, 4, 1, width, height, img);
 	if (error != 0) {

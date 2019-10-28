@@ -1,5 +1,5 @@
-#ifndef ALIEN_H
-#define ALIEN_H
+#ifndef ENEMYS_H
+#define ENEMYS_H
 
 #include "Enemy.h"
 
@@ -8,20 +8,27 @@ public:
 	Alien();
 	~Alien();
 
-	void init(int _x, int _y);
-	void load();
-	void draw();
+	void setup();
 	void update();
 
+	void init(int _x, int _y);
+	void draw();
+
+	void move();
+
+	void ableBullet();
+
+public:
+	static const int w = 3;
+	static const int h = 2;
+
+	Enemy alien[h][w];
+
+	int interval = 0;
+
 private:
-	static const int H = 5;
-	static const int W = 11;
-
-	Enemy alien[H][W];
-
 	int x;
 	int y;
 };
 
-#endif // !ALIEN_H
-
+#endif // !ENEMYS_H

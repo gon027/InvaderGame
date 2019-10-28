@@ -16,10 +16,10 @@ void WALL::init(int _x, int _y) {
 	}
 }
 
-void WALL::load(){
+void WALL::setup(){
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			wall[i][j].load();
+			wall[i][j].setup();
 		}
 	}
 }
