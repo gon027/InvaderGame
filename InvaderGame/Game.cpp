@@ -3,7 +3,10 @@
 #include "Define.h"
 #include "singleton.h"
 #include "FileReader.h"
+#include "AudioManager.h"
+#include "Timer.h"
 
+static constexpr int ufoScore[] = {50, 100, 300};
 
 Game::Game(){
 
@@ -15,20 +18,21 @@ Game::~Game(){
 
 void Game::setup(){
 	score = 0;
+	hitPoint = 2;
 	singleton<FileReader>::getInstance().read("text/HiScore.txt", "r");
 	hiScore = singleton<FileReader>::getInstance().getScore();
 
-	enemyOffset = 0;
+	enemyOffset = 220;
 
 	player.setup();
 	alien.setup();
 	ufo.setup();
 
-	/*wall1.setup();
+	wall1.setup();
 	wall2.setup();
 	wall3.setup();
 	wall4.setup();
-	*/
+	
 
 	init();
 }
@@ -39,15 +43,14 @@ void Game::init(){
 
 	//キャラクター類と壁の初期化
 	player.init();
-	alien.init(Window::WALL_L + 76 - 12, 220 + 30 * enemyOffset);
+	alien.init(Window::WALL_L + 76 - 12, enemyOffset);
 	ufo.init();
 
 	int xx = Window::WALL_L + 76;
-	/*wall1.init(xx, 640);
+	wall1.init(xx, 640);
 	wall2.init(xx + 140, 640);
 	wall3.init(xx + 140 * 2, 640);
 	wall4.init(xx + 140 * 3, 640);
-	*/
 }
 
 void Game::update(){
@@ -66,29 +69,44 @@ void Game::update(){
 	//DrawFormatString(840 + 17, 90, GetColor(255, 255, 255), "%05d", 0);
 
 	
-	//wallLoop();
+	wallLoop();
 	playerLoop();
 	enemyLoop();
 	ufoLoop();
 
 	if (allEnemyCount == 0) {
 		init();
-		enemyOffset++;
+		enemyOffset = 384;
 	}
 
 	if (player.life == false) {
+		hitPoint -= 1;
+		player.life = true;
+	}
+
+
+	//プレイヤーの体力が-1になったとき
+	if (hitPoint == 0) {
 		score = 0;
-		enemyOffset = 0;
+		enemyOffset = 220;
 		if (score >= hiScore) {
 			hiScore = score;
 		}
 		singleton<FileReader>::getInstance().write("text/HiScore.txt", "w", hiScore);
+		isRunning = false;
 	}
 	
 	fps.Wait();
 }
 
+int wait = 0;
+
 void Game::playerLoop(){
+	//プレイヤーの残り自機を描画
+	DrawFormatString(Window::WALL_L, 820, GetColor(0, 255, 255), "%d", hitPoint + 1);
+	for (int i = 0; i < hitPoint; ++i) {
+		player.draw(Window::WALL_L + 50 + 48 * i, 820);
+	}
 
 	if (player.life) {
 		player.update();
@@ -104,14 +122,21 @@ void Game::playerLoop(){
 			}
 		}
 
+		//printfDx("%d\n", (GetNowCount() - Timer::time) / 1000);
+
+		//UFOにあたったときの処理
 		if (player.bullet.isLife() == true) {
-			//UFOにあたったときの処理
 			if (player.bullet.isCollision(ufo)) {
 				if (ufo.life) {
-					//printfDx("UFO::HIT!!\n");
-					ufo.life = false;
 					player.bullet.life = false;
-					score += 300;
+					int temScore = ufoScore[GetRand(2)];
+					score += temScore;
+					ufo.life = false;
+
+					wait++;
+					if (wait <= 100) {
+						DrawFormatString(ufo.x, ufo.y, GetColor(255, 128, 128), "%d", temScore);
+					}
 				}
 			}
 
@@ -134,6 +159,9 @@ void Game::playerLoop(){
 						else if (i == 0) {
 							score += 30;
 						}
+
+						//singleton<AudioManager>::getInstance().play(1);
+
 
 						allEnemyCount--;
 					}

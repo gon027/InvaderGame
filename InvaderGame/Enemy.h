@@ -31,7 +31,7 @@ public:
 	int count;
 	int count2;
 	int interval;
-	bool turnflag;
+	bool leftTurn;
 	bool shotflag;
 	bool ableshot;
 };

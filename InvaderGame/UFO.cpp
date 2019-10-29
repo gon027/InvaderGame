@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 #include "Define.h"
+#include "AudioManager.h"
 
 constexpr int TIME = 100;
 
@@ -22,6 +23,7 @@ void UFO::update() {
 	if (life) {
 		draw();
 		move();
+		//singleton<AudioManager>::getInstance().play(0);
 	}
 	else {
 		interval++;

@@ -3,6 +3,10 @@
 #include "DxLib.h"
 
 void AudioManager::read(const char * _path, int _index){
+	if (MAX > 10) {
+		printfDx("AudioManager::NoMAX");
+		return;
+	}
 	sound[_index] = LoadSoundMem(_path);
 	if (sound[_index] == -1) {
 		printfDx("AidioManage::Read_ERROR");

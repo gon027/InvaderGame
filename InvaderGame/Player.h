@@ -12,6 +12,7 @@ public:
 	void setup() override;
 	void update() override;
 	void init() override;
+	void draw(int _x, int _y);
 
 private:
 	void draw() override;

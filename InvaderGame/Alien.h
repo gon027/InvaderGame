@@ -29,7 +29,8 @@ public:
 private:
 	int x;
 	int y;
-	bool leftTurn;
+	bool turnFlag;
+	bool rightTurn;
 	bool stop;
 };
 

@@ -7,12 +7,13 @@ class BaseScene;
 
 class SceneController : public singleton<SceneController>{
 public:
-	SceneController();
-	~SceneController();
-
 	void setup();
 	void update();
 	void changeScene(Status _status);
+
+protected:
+	SceneController();
+	~SceneController();
 
 private:
 	BaseScene* scene = nullptr;

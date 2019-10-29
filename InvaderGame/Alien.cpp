@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 #include "Define.h"
+#include "AudioManager.h"
 
 Alien::Alien(){
 	
@@ -32,6 +33,9 @@ void Alien::init(int _x, int _y) {
 			alien[i][j].init(x + j * 48, y + i * 48);
 		}
 	}
+
+	turnFlag = false;
+
 }
 
 void Alien::draw(){
@@ -48,39 +52,49 @@ int co = 0;
 
 void Alien::move(){
 	// ˆÚ“®ˆ—
-	for (int i = 0; i < Alien::h; i++) {
-		for (int j = 0; j < Alien::w; j++) {
-			//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
-			if (alien[i][j].life == false) continue;
 
-			alien[i][j].move();		//ˆÚ“®
-			//alien[i][j].shot();	//’e‚ğ‘Å‚Â
+	co++;
+	if (co == 30 && !turnFlag) {
+		//singleton<AudioManager>::getInstance().play(0);
 
-			//•Ç‚Ì”»’è
-			if (alien[i][j].wallJudge()) {
-				leftTurn = true;
+		for (int i = 0; i < Alien::h; i++) {
+			//if (turnFlag == true)  break;
+			for (int j = 0; j < Alien::w; j++) {
+				//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
+				if (alien[i][j].life == false) continue;
+
+				//•Ç‚Ì”»’è
+				alien[i][j].move();		//ˆÚ“®
+				//alien[i][j].shot();	//’e‚ğ‘Å‚Â
+				
+				if (alien[i][j].wallJudge()) {
+					turnFlag = true;;
+				}
 			}
 		}
+		co = 0;
 	}
 
 	//•Ç‚É‚ ‚½‚Á‚½‚Æ‚«‚Ì”½“]ˆ—
-	if (leftTurn) {
+	if (turnFlag == true) {
+		co = 0;
+		//printfDx("%d\n", co);
 		for (int y = Alien::h - 1; y >= 0; --y) {
 			for (int x = 0; x < Alien::w; ++x) {
 				//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
 				if (alien[y][x].life == false) continue;
 				
-				//alien[y][x].down();
-
+				alien[y][x].down();
 				alien[y][x].invxspeed();
 			}
 		}
-		leftTurn = false;
+		turnFlag = false;
 	}
 }
 
 void Alien::ableBullet(){
 	int flag = GetRand(1);
+	int fcount = 0;
 
 	//”z—ñ‚Ìˆê”ÔŠO‘¤‚ÌƒGƒCƒŠƒAƒ“‚¾‚¯‚ª’e‚ğ‘Å‚Ä‚é‚æ‚¤‚É‚·‚é
 	for (int i = 0; i < h; i++) {
@@ -103,8 +117,10 @@ void Alien::ableBullet(){
 		for (int j = 0; j < w; j++) {
 			if (alien[i][j].shotflag == false) continue;
 
-			if (alien[i][j].ableShotFlag() == 0) {
+			if (alien[i][j].ableShotFlag() == 0 && fcount == 0) {
 				alien[i][j].shotflag = false;
+				fcount++;
+				return;
 			}
 		}
 	}

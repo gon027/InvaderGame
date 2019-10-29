@@ -3,6 +3,8 @@
 
 #include "singleton.h"
 
+static constexpr int MAX = 7;
+
 class AudioManager : public singleton<AudioManager>{
 public:
 	friend class singleton<AudioManager>;
@@ -15,7 +17,7 @@ protected:
 	~AudioManager() = default;
 
 private:
-	int sound[10];
+	int sound[MAX];
 };
 
 #endif // !AUDIOMANAGER_H

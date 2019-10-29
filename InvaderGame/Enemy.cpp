@@ -1,7 +1,10 @@
 #include "Enemy.h"
 
+
+#include <Windows.h>
 #include "DxLib.h"
 #include "Define.h"
+#include "AudioManager.h"
 
 static int timeup = 30;
 
@@ -18,9 +21,9 @@ void Enemy::setup(){
 }
 
 void Enemy::update(){
-	if (shotflag && ableShotFlag() == 1) {
+	/*if (shotflag && ableShotFlag() == 1) {
 		shot();
-	}
+	}*/
 }
 
 void Enemy::init(){
@@ -28,7 +31,7 @@ void Enemy::init(){
 	this->xspeed = 6;
 	this->yspeed = 10;
 	this->life = true;
-	this->turnflag = false;
+	this->leftTurn = false;
 	this->count = 0;
 	this->interval = 0;
 	this->shotflag = false;
@@ -49,14 +52,7 @@ void Enemy::draw(){
 }
 
 void Enemy::move(){
-	//printfDx("Enemy::move\n");
-	interval++;
-
-	if (interval == timeup) {
-		x += xspeed;
-		shot();
-		interval = 0;
-	}
+	x += xspeed;
 
 	//yç¿ïWÇÃâÊñ äOîªíË
 	if (y <= 0) {
@@ -74,9 +70,6 @@ void Enemy::shot(){
 			bullet.init(this->x + width / 2, this->y + height * 2, 10, GetColor(255, 255, 0));
 		}
 	}
-
-
-	
 }
 
 bool Enemy::ableShotFlag(){
@@ -91,15 +84,19 @@ bool Enemy::ableShotFlag(){
 }
 
 void Enemy::down(){
+	//printfDx("down\n");
 	y += yspeed;
 }
 
 void Enemy::invxspeed(){
+	//printfDx("inverse\n");
 	xspeed = -xspeed;
 }
 
 bool Enemy::wallJudge(){
-	if (x <= Window::WALL_L || x + width >= Window::WALL_R) {
+	int xx = x + xspeed;
+
+	if (xx <= Window::WALL_L || xx + width >= Window::WALL_R) {
 		return true;
 	}
 	return false;

@@ -161,6 +161,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneController.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="UFO.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneController.h" />
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="UFO.h" />
     <ClInclude Include="Wall.h" />

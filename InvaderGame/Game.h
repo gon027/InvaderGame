@@ -32,15 +32,16 @@ public:
 	WALL wall3;
 	WALL wall4;
 
+	bool isRunning;
+	
 	int count = 0;
-
 	bool flag = false;
 	int timer = 0;
 	int score;			//スコア
 	int hiScore;		//ハイスコア
 	int allEnemyCount;
-	bool isRunning;
 	int enemyOffset;
+	int hitPoint;
 };
 
 #endif // !GAME_H

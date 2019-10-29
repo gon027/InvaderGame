@@ -1,15 +1,24 @@
 #include "Main.h"
 
+#include "Timer.h"
+
 Game game;
 
-SceneController sController;
+//SceneController sController;
 Status status;
 BackGround back(0, 0, "image/back_game.png");
 
 void init() {
 	SetBackgroundColor(0, 0, 0);
 
-	singleton<AudioManager>::getInstance().read("sound/se1.mp3", 0);
+	singleton<AudioManager>::getInstance().read("sound/se_test1.mp3", 0);
+	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 1);
+	/*singleton<AudioManager>::getInstance().read("sound/se_test3.mp3", 2);
+	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 3);
+	singleton<AudioManager>::getInstance().read("sound/se_test3.mp3", 4);
+	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 5);
+	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 6);
+	*/	
 
 	game.setup();
 
@@ -21,6 +30,8 @@ void init() {
 }
 
 void update() {
+	Timer::time = GetNowCount();
+
 #ifdef FULL_SCREEN
 	back.draw();
 #else

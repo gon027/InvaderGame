@@ -1,5 +1,6 @@
 #include "Player.h"
 
+#include <Windows.h>
 #include "DxLib.h"
 #include "Define.h"
 #include "Bullet.h"
@@ -41,6 +42,10 @@ void Player::init(){
 	this->life = true;
 }
 
+void Player::draw(int _x, int _y){
+	DrawImage(_x, _y);
+}
+
 void Player::draw(){
 	DrawImage(this->x, this->y);
 }
@@ -60,6 +65,16 @@ void Player::move() {
 			//singleton<AudioManager>::getInstance().play(0);
 		}
 	}
+
+//#ifdef DEBUG
+	//Ž©ŽEƒ{ƒ^ƒ“
+	if (key[KEY_INPUT_Q] == 1) {
+		if (life == true) {
+			printfDx("aaaaa");
+			life = false;
+		}
+	}
+//#endif // DEBUG
 
 	bullet.draw();
 
