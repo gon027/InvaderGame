@@ -26,15 +26,15 @@ protected:
 	void DrawImage(int x, int y);               //画像描画
 
 public:
-	int x;
-	int y;
+	int x;          //x座標
+	int y;          //y座標
 
 	int img;		//画像ハンドル
-	int width;
-	int height;
-	int xspeed;
-	int yspeed;
-	bool life;
+	int width;      //画像の横幅
+	int height;     //画像の縦幅
+	int xspeed;     //x軸への移動するときのスピード
+	int yspeed;     //y軸への移動するときのスピード
+	bool life;      //生きているかのフラグ
 };
 
 #endif // !ACTOR_H

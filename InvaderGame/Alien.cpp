@@ -17,6 +17,7 @@ void Alien::setup(){
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
 			alien[i][j].setup();
+			alien[i][j].xMoveTimer = 100 - 20 * i;
 		}
 	}
 }
@@ -34,8 +35,8 @@ void Alien::init(int _x, int _y) {
 		}
 	}
 
+	allAlienCount = w * h;
 	turnFlag = false;
-
 }
 
 void Alien::draw(){
@@ -52,44 +53,48 @@ int co = 0;
 
 void Alien::move(){
 	// ˆÚ“®ˆ—
+	for (int i = 0; i < Alien::h; i++) {
+		//if (turnFlag == true)  break;
+		for (int j = 0; j < Alien::w; j++) {
+			//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
+			if (alien[i][j].life == false) continue;
 
-	co++;
-	if (co == 30 && !turnFlag) {
-		//singleton<AudioManager>::getInstance().play(0);
-
-		for (int i = 0; i < Alien::h; i++) {
-			//if (turnFlag == true)  break;
-			for (int j = 0; j < Alien::w; j++) {
-				//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
-				if (alien[i][j].life == false) continue;
-
-				//•Ç‚Ì”»’è
-				alien[i][j].move();		//ˆÚ“®
-				//alien[i][j].shot();	//’e‚ð‘Å‚Â
+			//•Ç‚Ì”»’è
+			alien[i][j].move();		//ˆÚ“®
+			//alien[i][j].intervar = 0;
+			//alien[i][j].shot();	//’e‚ð‘Å‚Â
 				
-				if (alien[i][j].wallJudge()) {
-					turnFlag = true;;
-				}
+			if (alien[i][j].wallJudge()) {
+				turnFlag = true;;
 			}
 		}
-		co = 0;
 	}
 
 	//•Ç‚É‚ ‚½‚Á‚½‚Æ‚«‚Ì”½“]ˆ—
 	if (turnFlag == true) {
-		co = 0;
-		//printfDx("%d\n", co);
 		for (int y = Alien::h - 1; y >= 0; --y) {
 			for (int x = 0; x < Alien::w; ++x) {
 				//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
 				if (alien[y][x].life == false) continue;
 				
-				alien[y][x].down();
 				alien[y][x].invxspeed();
+				alien[y][x].down();
 			}
 		}
 		turnFlag = false;
 	}
+}
+
+void Alien::alienCoundDown(){
+	allAlienCount -= 1;
+}
+
+int Alien::getAlienCount(){
+	return allAlienCount;
+}
+
+void Alien::resetAlienCount(){
+	allAlienCount = w * h;
 }
 
 void Alien::ableBullet(){

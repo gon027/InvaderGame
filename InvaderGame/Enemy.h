@@ -11,8 +11,6 @@ public:
 
 	void setup() override;
 	void update() override;
-
-public:
 	void draw() override;
 	void init() override;
 	void init(int _x, int _y) override;
@@ -26,14 +24,11 @@ public:
 public:
 	Bullet bullet;
 
-	int TIMEUP;
-
-	int count;
-	int count2;
-	int interval;
-	bool leftTurn;
-	bool shotflag;
-	bool ableshot;
+	int TIMEUP;		    //移動するタイミングの最大値
+	bool shotflag;      //敵が弾を打つか打たないかのフラグ
+	int intervar;
+	int xMoveTimer;
+	int yMoveTimer;
 };
 
 #endif // !ENEMY_H

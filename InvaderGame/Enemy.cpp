@@ -31,12 +31,10 @@ void Enemy::init(){
 	this->xspeed = 6;
 	this->yspeed = 10;
 	this->life = true;
-	this->leftTurn = false;
-	this->count = 0;
-	this->interval = 0;
+	//this->count = 0;
 	this->shotflag = false;
-	this->ableshot = false;
-	count2 = 0;
+
+	intervar = 0;
 }
 
 void Enemy::init(int _x, int _y){
@@ -52,7 +50,11 @@ void Enemy::draw(){
 }
 
 void Enemy::move(){
-	x += xspeed;
+	intervar++;
+	if (intervar == 10) {
+		x += xspeed;
+		intervar = 0;
+	}
 
 	//yÀ•W‚Ì‰æ–ÊŠO”»’è
 	if (y <= 0) {

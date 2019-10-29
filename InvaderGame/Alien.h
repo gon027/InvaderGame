@@ -8,30 +8,29 @@ public:
 	Alien();
 	~Alien();
 
-	void setup();
-	void update();
-
-	void init(int _x, int _y);
-	void draw();
-
-	void move();
-
-	void ableBullet();
-
-public:
 	static const int w = 11;
 	static const int h = 5;
 
 	Enemy alien[h][w];
 
-	int interval = 0;
+	void setup();
+	void update();
+	void init(int _x, int _y);
+	void draw();
+	void move();
+	void alienCoundDown();
+	int getAlienCount();
+	void resetAlienCount();
+	void ableBullet();
 
 private:
 	int x;
 	int y;
+	int allAlienCount;
 	bool turnFlag;
 	bool rightTurn;
 	bool stop;
+	int interval = 0;
 };
 
 #endif // !ENEMYS_H

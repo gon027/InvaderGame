@@ -1,12 +1,14 @@
 #include "Main.h"
 
 #include "Timer.h"
+#include "TitleScene.h"
 
-Game game;
+//Game game;
 
 //SceneController sController;
 Status status;
 BackGround back(0, 0, "image/back_game.png");
+TitleScene title;
 
 void init() {
 	SetBackgroundColor(0, 0, 0);
@@ -20,10 +22,11 @@ void init() {
 	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 6);
 	*/	
 
-	game.setup();
+	//game.setup();
 
-	back.loadImage();
+	//back.loadImage();
 
+	title.setup();
 
 	//status = Title;
 	//sController.start();
@@ -33,12 +36,14 @@ void update() {
 	Timer::time = GetNowCount();
 
 #ifdef FULL_SCREEN
-	back.draw();
+	//back.draw();
 #else
 	DrawBox(0, 0, Window::WIDTH, Window::HEIGHT, GetColor(0, 255, 255), TRUE);
 #endif
 
-	game.update();
+	title.update();
+
+	//game.update();
 	
 	/*sController.update();
 

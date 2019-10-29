@@ -2,6 +2,7 @@
 #define TITLESCENE_H
 
 #include "BaseScene.h"
+#include "BackGround.h"
 
 class TitleScene : public BaseScene{
 public:
@@ -10,6 +11,9 @@ public:
 
 	void setup() override;
 	void update() override;
+
+private:
+	BackGround backGround;
 };
 
 

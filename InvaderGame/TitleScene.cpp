@@ -4,7 +4,7 @@
 #include "Define.h"
 
 TitleScene::TitleScene(){
-
+	backGround.init(0, 0, "image/back_title.png");
 }
 
 TitleScene::~TitleScene(){
@@ -12,10 +12,9 @@ TitleScene::~TitleScene(){
 }
 
 void TitleScene::setup(){
-
+	backGround.loadImage();
 }
 
 void TitleScene::update(){
-	DrawBox(0, 0, Window::WIDTH, Window::HEIGHT, GetColor(255, 255, 0), 1);
-	DrawString(0, 16, "Title", GetColor(0, 0, 0));
+	backGround.draw();
 }

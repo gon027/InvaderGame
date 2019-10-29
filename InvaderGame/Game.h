@@ -35,13 +35,11 @@ public:
 	bool isRunning;
 	
 	int count = 0;
-	bool flag = false;
 	int timer = 0;
 	int score;			//スコア
 	int hiScore;		//ハイスコア
-	int allEnemyCount;
-	int enemyOffset;
-	int hitPoint;
+	int enemyOffset;	//敵が描画される座標
+	int hitPoint;		//プレイヤーの残り自機
 };
 
 #endif // !GAME_H

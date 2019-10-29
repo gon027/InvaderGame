@@ -38,7 +38,6 @@ void Game::setup(){
 }
 
 void Game::init(){
-	allEnemyCount = Alien::h * Alien::w;
 	isRunning = true;
 
 	//キャラクター類と壁の初期化
@@ -74,9 +73,9 @@ void Game::update(){
 	enemyLoop();
 	ufoLoop();
 
-	if (allEnemyCount == 0) {
-		init();
+	if (alien.getAlienCount() == 0) {
 		enemyOffset = 384;
+		init();
 	}
 
 	if (player.life == false) {
@@ -163,7 +162,7 @@ void Game::playerLoop(){
 						//singleton<AudioManager>::getInstance().play(1);
 
 
-						allEnemyCount--;
+						alien.alienCoundDown();
 					}
 
 					//自分の弾が敵の弾に当たった時の処理
@@ -211,6 +210,10 @@ void Game::enemyLoop(){
 			//敵が壁にあたったときの処理
 			if (alien.alien[i][j].life) {
 				wall1.ehitTest(alien.alien[i][j].x, alien.alien[i][j].y, alien.alien[i][j].width, alien.alien[i][j].height);
+				wall2.ehitTest(alien.alien[i][j].x, alien.alien[i][j].y, alien.alien[i][j].width, alien.alien[i][j].height);
+				wall3.ehitTest(alien.alien[i][j].x, alien.alien[i][j].y, alien.alien[i][j].width, alien.alien[i][j].height);
+				wall4.ehitTest(alien.alien[i][j].x, alien.alien[i][j].y, alien.alien[i][j].width, alien.alien[i][j].height);
+
 			}
 
 			if (alien.alien[i][j].shotflag) {
@@ -224,11 +227,6 @@ void Game::enemyLoop(){
 							//player.life = false;
 						}
 					}
-
-					//画面外処理（画面外にカウントを0にする）
-					/*if (alien.alien[i][j].bullet.isLife() == false) {
-						alien.alien[i][j].count = 0;
-					}*/
 				}
 
 				//弾が壁にあたったときの処理
