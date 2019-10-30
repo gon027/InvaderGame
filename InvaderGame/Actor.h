@@ -1,8 +1,6 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-
-
 class Bullet;
 
 class Actor {

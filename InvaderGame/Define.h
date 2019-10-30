@@ -3,9 +3,6 @@
 
 #define FULL_SCREEN
 
-#define OR ||
-#define AND &&
-
 namespace Window {
 #ifdef FULL_SCREEN
 	//âÊñ ÉTÉCÉY
@@ -40,10 +37,5 @@ namespace Window {
 	constexpr int YOUT = HEIGHT;
 #endif // FULL_SCREEN
 }
-
-enum Status {
-	Title = 0,
-	GameScene,
-};
 
 #endif // !DEFINE_H

@@ -3,6 +3,8 @@
 #include "Timer.h"
 #include "TitleScene.h"
 
+SceneController *controller;
+
 Game game;
 TitleScene title;
 
@@ -19,12 +21,17 @@ void init() {
 	*/	
 
 	//title.setup();
-	game.setup();
+	//game.setup();
+
+	controller = new SceneController();
+	controller->scene = new TitleScene(controller);
+	//controller->setup();
 }
 
 void update() {
 	//title.update();
-	game.update();
+	//game.update();
+	controller->update();;
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine, int nCmdShow) {
@@ -40,6 +47,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine
 	while (isProcess()) {
 		update();
 	}
+
+	delete controller;
 
 	DxLib_End();
 	return 0;

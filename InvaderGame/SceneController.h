@@ -2,22 +2,23 @@
 #define SCENECONTROLLER_H
 
 #include "Define.h"
-#include "singleton.h"
+#include "SceneStatus.h"
+#include "SceneController.h"
+#include "BaseScene.h"
+
 class BaseScene;
 
-class SceneController : public singleton<SceneController>{
+class SceneController{
 public:
-	void setup();
-	void update();
-	void changeScene(Status _status);
-
-protected:
 	SceneController();
 	~SceneController();
 
-private:
-	BaseScene* scene = nullptr;
-	Status status;
+	void setup();
+	void update();
+	void changeScene(SceneStatus _status);
+
+public:
+	static BaseScene* scene;
 };
 
 #endif // !SCENECONTROLLER

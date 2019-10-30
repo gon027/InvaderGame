@@ -8,11 +8,13 @@
 #include "Wall.h"
 #include "BackGround.h"
 #include "BaseScene.h"
+#include "SceneController.h"
 
 class Game : public BaseScene{
 public:
 	Game();
-	~Game();
+	Game(SceneController *_controller);
+	~Game() = default;
 
 	void setup() override;		//Å‰‚É1‰ñ‚¾‚¯ŒÄ‚Î‚ê‚é
 	void init();				//“G‚ª“|‚³‚ê‚é‚ÆŒÄ‚Î‚ê‚é

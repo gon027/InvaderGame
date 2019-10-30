@@ -134,7 +134,7 @@
     <ClInclude Include="Color.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneName.h">
+    <ClInclude Include="SceneStatus.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

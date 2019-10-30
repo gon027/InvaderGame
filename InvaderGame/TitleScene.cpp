@@ -4,19 +4,19 @@
 #include "DxLib.h"
 #include "Define.h"
 #include "Color.h"
-using std::string;
-
-//時間差で表示させる文字列
-//テーブルとして表示させる文字列
-string table = "*SCORE ADVANCE TABLE*";
-
-const string str = "PLAY/	INVADER GAME/=? MYSTERY/=30 POINTS/=20 POINTS/=10 POINTS";
+#include "Game.h"
 
 TitleScene::TitleScene(){
-	backGround.init(0, 0, "image/back_title.png");
+
+}
+
+TitleScene::TitleScene(SceneController * _controller){
+	this->controller = _controller;
+	setup();
 }
 
 void TitleScene::setup(){
+	backGround.init(0, 0, "image/back_title.png");
 	backGround.loadImage();
 }
 
@@ -50,5 +50,10 @@ void TitleScene::update(){
 	frame = (frame + 1) % 100;
 	if (frame < 50) {
 		DrawFormatString(Window::MIDDLE, 800, yellow, "%s", " PUSH SPACE");
+	}
+
+	if (CheckHitKey(KEY_INPUT_P) != 0) {
+		this->controller->scene = new Game(controller);
+		delete this;
 	}
 }

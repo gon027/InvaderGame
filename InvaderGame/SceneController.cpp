@@ -3,9 +3,9 @@
 #include "TitleScene.h"
 #include "Game.h"
 
+BaseScene* SceneController::scene = nullptr;
 
 SceneController::SceneController(){
-	status = Title;
 	scene = new TitleScene();
 }
 
@@ -21,16 +21,14 @@ void SceneController::update(){
 	scene->update();
 }
 
-void SceneController::changeScene(Status _status){
+void SceneController::changeScene(SceneStatus _status){
 	printfDx("SceneController::changeScene");
-
-	status = _status;
 
 	if (scene != nullptr) {
 		delete scene;
 	}
 
-	switch (status){
+	switch (_status){
 	case Title:
 		scene = new TitleScene();
 		break;

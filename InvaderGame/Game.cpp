@@ -5,15 +5,17 @@
 #include "FileReader.h"
 #include "AudioManager.h"
 #include "Timer.h"
+#include "TitleScene.h"
 
 static constexpr int ufoScore[] = {50, 100, 300};
 
 Game::Game(){
-
+	//setup();
 }
 
-Game::~Game(){
-
+Game::Game(SceneController * _controller){
+	this->controller = _controller;
+	setup();
 }
 
 void Game::setup(){
@@ -21,7 +23,7 @@ void Game::setup(){
 	backGround.loadImage();
 
 	score = 0;
-	hitPoint = 2;
+	hitPoint = 0;
 	//ファイルから値を読み出す
 	singleton<FileReader>::getInstance().read("text/HiScore.txt", "r");
 	hiScore = singleton<FileReader>::getInstance().getScore();
@@ -104,6 +106,9 @@ void Game::update(){
 			score = 0;
 			enemyOffset = 220;
 			isRunning = false;
+
+			controller->scene = new TitleScene(controller);
+			delete this;
 		}
 	}
 	

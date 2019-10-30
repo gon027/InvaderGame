@@ -185,7 +185,7 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneController.h" />
-    <ClInclude Include="SceneName.h" />
+    <ClInclude Include="SceneStatus.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
