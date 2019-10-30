@@ -15,7 +15,6 @@ public:
 	void draw();
 	void move();
 	bool isLife();
-	bool randBullet();
 
 	bool isCollision(Actor& actor);
 	bool isBCollision(const Bullet& bullet);

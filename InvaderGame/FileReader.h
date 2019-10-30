@@ -3,17 +3,17 @@
 
 #include <cstdio>
 #include <cstdlib>
-using namespace std;
 #include "singleton.h"
+using namespace std;
 
 class FileReader : public singleton<FileReader>{
 public:
 	friend class singleton<FileReader>;
 
-	void open(const char*, const char*);
-	void read(const char*, const char *);
-	void write(const char*, const char*, int);
-	void close();
+	void open(const char*, const char*);			//ファイルを開く
+	void read(const char*, const char *);			//ファイルを読み込む
+	void write(const char*, const char*, int);		//ファイルに書き込む
+	void close();									//ファイルを閉じる
 	int getScore();
 
 protected:
@@ -21,11 +21,7 @@ protected:
 	~FileReader() = default;
 
 private:
-	//int file;
-
-
 	FILE *scoreFile;
-
 	int hiScore;
 };
 

@@ -1,12 +1,8 @@
 #include "Enemy.h"
 
-
-#include <Windows.h>
 #include "DxLib.h"
 #include "Define.h"
 #include "AudioManager.h"
-
-static int timeup = 30;
 
 Enemy::Enemy(){
 
@@ -18,23 +14,21 @@ Enemy::~Enemy(){
 
 void Enemy::setup(){
 	LoadActorImage("image/enemy_test.png");
+	//LoadEnemyImage("image/enemy_test3.png");
 }
 
 void Enemy::update(){
-	/*if (shotflag && ableShotFlag() == 1) {
-		shot();
-	}*/
+
 }
 
 void Enemy::init(){
 	TIMEUP = 30;
 	this->xspeed = 6;
-	this->yspeed = 10;
+	this->yspeed = 16;
 	this->life = true;
-	//this->count = 0;
 	this->shotflag = false;
-
 	intervar = 0;
+	index = 0;
 }
 
 void Enemy::init(int _x, int _y){
@@ -44,14 +38,15 @@ void Enemy::init(int _x, int _y){
 }
 
 void Enemy::draw(){
-	//printfDx("Enemy::draw\n");
 	DrawImage(this->x, this->y);
+	//DrawImage2(this->x, this->y);
 	bullet.draw();
 }
 
 void Enemy::move(){
-	intervar++;
-	if (intervar == 10) {
+	intervar = (intervar + 1) % TIMEUP;
+	if (intervar == TIMEUP - 1) {
+		index = (index + 1) % 6;
 		x += xspeed;
 		intervar = 0;
 	}
@@ -67,39 +62,51 @@ void Enemy::move(){
 }
 
 void Enemy::shot(){
-	if (shotflag && ableShotFlag() == 1) {
-		if (bullet.life == false) {
-			bullet.init(this->x + width / 2, this->y + height * 2, 10, GetColor(255, 255, 0));
-		}
-	}
-}
 
-bool Enemy::ableShotFlag(){
-	int rand = GetRand(1);
-
-	//ƒGƒCƒŠƒAƒ“‚ª’e‚ð‘Å‚Â‚©‘Å‚½‚È‚¢‚©
-	if (rand == 1) {
-		return true;
-	}
-
-	return false;
+	//if (shotflag) {
+		bullet.init(this->x + width / 2, this->y + height * 2, 5, GetColor(255, 255, 0));
+		
+	//}
 }
 
 void Enemy::down(){
-	//printfDx("down\n");
 	y += yspeed;
 }
 
 void Enemy::invxspeed(){
-	//printfDx("inverse\n");
 	xspeed = -xspeed;
 }
 
 bool Enemy::wallJudge(){
+	
 	int xx = x + xspeed;
 
 	if (xx <= Window::WALL_L || xx + width >= Window::WALL_R) {
+		printfDx("dfdsfads\n");
 		return true;
 	}
+
 	return false;
+}
+
+void Enemy::speedUp(int _val){
+	TIMEUP = _val;
+}
+
+void Enemy::LoadEnemyImage(const char* path) {
+	int error;
+	//error = LoadDivGraph(path, 2, 2, 1, 32, 32, imgbuf);
+	error = LoadDivGraph(path, 6, 2, 3, 32, 32, imgbuf);
+	if (error != 0) {
+		printfDx("Eenmy::LoadActorImage_ERROR\n");
+	}
+}
+
+void Enemy::DrawImage2(int x, int y) {
+	//printfDx("ACtor::DrawImage\n");
+	int error;
+	error = DrawGraph(x, y, imgbuf[index], TRUE);
+	if (error != 0) {
+		printfDx("Enemy::DrawImage_ERROR\n");
+	}
 }

@@ -28,8 +28,8 @@ void Bullet::init(int _x, int _y, int _speed, unsigned int _color){
 void Bullet::draw() {
 	if (life) {
 		DrawLine(x, y, x, y + height, color, width);
+		move();
 	}
-	move();
 }
 
 void Bullet::move(){
@@ -64,14 +64,3 @@ bool Bullet::isBCollision(const Bullet & bullet){
 bool Bullet::isLife(){
 	return this->life;
 }
-
-bool Bullet::randBullet(){
-	int flag = GetRand(1);
-
-	if(flag == 1){
-		return true;
-	}
-
-	return false;
-}
-

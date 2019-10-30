@@ -3,11 +3,7 @@
 #include "Timer.h"
 #include "TitleScene.h"
 
-//Game game;
-
-//SceneController sController;
-Status status;
-BackGround back(0, 0, "image/back_game.png");
+Game game;
 TitleScene title;
 
 void init() {
@@ -22,37 +18,13 @@ void init() {
 	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 6);
 	*/	
 
-	//game.setup();
-
-	//back.loadImage();
-
-	title.setup();
-
-	//status = Title;
-	//sController.start();
+	//title.setup();
+	game.setup();
 }
 
 void update() {
-	Timer::time = GetNowCount();
-
-#ifdef FULL_SCREEN
-	//back.draw();
-#else
-	DrawBox(0, 0, Window::WIDTH, Window::HEIGHT, GetColor(0, 255, 255), TRUE);
-#endif
-
-	title.update();
-
-	//game.update();
-	
-	/*sController.update();
-
-	if (status == Title) {
-		if (CheckHitKey(KEY_INPUT_SPACE)) {
-			status = GameScene;
-			sController.changeScene(status);
-		}
-	}*/
+	//title.update();
+	game.update();
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine, int nCmdShow) {

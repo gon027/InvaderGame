@@ -6,6 +6,7 @@
 #include "Alien.h"
 #include "UFO.h"
 #include "Wall.h"
+#include "BackGround.h"
 #include "BaseScene.h"
 
 class Game : public BaseScene{
@@ -17,13 +18,14 @@ public:
 	void init();				//“G‚ª“|‚³‚ê‚é‚ÆŒÄ‚Î‚ê‚é
 	void update() override;
 
-	void playerLoop();
-	void enemyLoop();
-	void ufoLoop();
-	void wallLoop();
+	void playerUpdate();
+	void alienUpdate();
+	void ufpUpdate();
+	void wallUpdate();
 
 public:
 	Fps fps;
+	BackGround backGround;
 	Player player;
 	Alien alien;
 	UFO ufo;

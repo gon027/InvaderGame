@@ -2,6 +2,7 @@
 #define ENEMYS_H
 
 #include "Enemy.h"
+#include "Bullet.h"
 
 class Alien {
 public:
@@ -18,10 +19,12 @@ public:
 	void init(int _x, int _y);
 	void draw();
 	void move();
+	void shot();
 	void alienCoundDown();
 	int getAlienCount();
 	void resetAlienCount();
-	void ableBullet();
+	void speedUp(int _val);
+
 
 private:
 	int x;

@@ -1,8 +1,27 @@
 #include "Alien.h"
 
+#include <vector>
 #include "DxLib.h"
 #include "Define.h"
 #include "AudioManager.h"
+using std::vector;
+
+class Point {
+public:
+	Point() = default;
+
+	Point(int _x, int _y) {
+		x = _x;
+		y = _y;
+	}
+
+	~Point() = default;
+
+	int x;
+	int y;
+};
+
+vector<Point> enemyPoint;		//’e‚ğ‘Å‚Â’Š‘I‚Ì‚½‚ß‚Ì”z—ñ
 
 Alien::Alien(){
 	
@@ -49,8 +68,6 @@ void Alien::draw(){
 	}
 }
 
-int co = 0;
-
 void Alien::move(){
 	// ˆÚ“®ˆ—
 	for (int i = 0; i < Alien::h; i++) {
@@ -61,8 +78,6 @@ void Alien::move(){
 
 			//•Ç‚Ì”»’è
 			alien[i][j].move();		//ˆÚ“®
-			//alien[i][j].intervar = 0;
-			//alien[i][j].shot();	//’e‚ğ‘Å‚Â
 				
 			if (alien[i][j].wallJudge()) {
 				turnFlag = true;;
@@ -83,9 +98,65 @@ void Alien::move(){
 		}
 		turnFlag = false;
 	}
+
+	printfDx("allEnemyCount = %d\n", allAlienCount);
+
+	if (allAlienCount == 50) {
+		speedUp(60);
+	}
+	else if (allAlienCount == 30) {
+		speedUp(40);
+	}
+	else if (allAlienCount == 20) {
+		speedUp(20);
+	}
+	else if (allAlienCount == 10) {
+		speedUp(10);
+	}
+	else if (allAlienCount == 5) {
+		speedUp(5);
+	}
+	else if (allAlienCount == 1) {
+		speedUp(1);
+	}
 }
 
-void Alien::alienCoundDown(){
+int bulletInterval = 0;
+void Alien::shot() {
+	enemyPoint.clear();
+	bulletInterval++;
+
+	if (bulletInterval == 35) {
+		//1—ñ‚É‚¢‚é“G‚©‚ç’e‚ğ”­Ë‚·‚é“G‚ğ’T‚·
+		for (int x = 0; x < w; x++) {
+			//ŠO‘¤‚Ì“G‚ª¶‚«‚Ä‚¢‚Ä‚©‚ÂAshotflga‚ªfalse‚Ìê‡‚Ìvector‚É’Ç‰Á
+			if (alien[h - 1][x].life) {
+				enemyPoint.push_back(Point(x, h - 1));
+			}
+			else {
+				//ŠO‘¤‚Ì“G‚ª€‚ñ‚Å‚¢‚é‚Æ‚«Ashotflag‚ª—§‚Á‚Ä‚¢‚é‚Æ‚«
+				//Œã‚ë‚Ì“G‚ª¶‚«‚Ä‚¢‚ÄAshotflag‚ª—§‚Á‚Ä‚¢‚È‚¢‚â‚Â‚ğ’Ç‰Á
+				//TODO: shotflag‚ªí‚Éfalse‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ÅA¡‚Í’e‚ğŒ‚‚Ä‚Ü‚¹‚ñ
+				for (int y = h - 1; y >= 0; y--) {
+					if (alien[y][x].life) {
+						enemyPoint.push_back(Point(x, y));
+						break;
+					}
+				}
+			}
+		}
+
+		int rand = GetRand(enemyPoint.size() - 1);
+		int xIndex = enemyPoint.at(rand).x;
+		int yIndex = enemyPoint.at(rand).y;
+		alien[yIndex][xIndex].shot();
+		//alien[yIndex][xIndex].shotflag = true;
+
+		bulletInterval = 0;
+	}
+}
+
+void Alien::alienCoundDown() {
 	allAlienCount -= 1;
 }
 
@@ -97,36 +168,13 @@ void Alien::resetAlienCount(){
 	allAlienCount = w * h;
 }
 
-void Alien::ableBullet(){
-	int flag = GetRand(1);
-	int fcount = 0;
-
-	//”z—ñ‚Ìˆê”ÔŠO‘¤‚ÌƒGƒCƒŠƒAƒ“‚¾‚¯‚ª’e‚ğ‘Å‚Ä‚é‚æ‚¤‚É‚·‚é
-	for (int i = 0; i < h; i++) {
-		for (int j = 0; j < w; j++) {
+void Alien::speedUp(int _val){
+	printfDx("fdsafad\n");
+	for (int i = 0; i < Alien::h; i++) {
+		for (int j = 0; j < Alien::w; j++) {
+			//“G‚Ìƒ‰ƒCƒt‚ª‚È‚¢ê‡
 			if (alien[i][j].life == false) continue;
-
-			int index = i + 1;
-			if (index >= h){
-				if (alien[i][j].ableShotFlag()) {
-					alien[i][j].shotflag = true;
-				}
-			}
-			if (alien[index][j].life == true) {
-				alien[i][j].shotflag = false;
-			}
-		}
-	}
-
-	for (int i = 0; i < h; i++) {
-		for (int j = 0; j < w; j++) {
-			if (alien[i][j].shotflag == false) continue;
-
-			if (alien[i][j].ableShotFlag() == 0 && fcount == 0) {
-				alien[i][j].shotflag = false;
-				fcount++;
-				return;
-			}
+			alien[i][j].speedUp(_val);
 		}
 	}
 }

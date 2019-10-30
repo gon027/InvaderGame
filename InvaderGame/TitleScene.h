@@ -7,7 +7,7 @@
 class TitleScene : public BaseScene{
 public:
 	TitleScene();
-	~TitleScene();
+	~TitleScene() = default;
 
 	void setup() override;
 	void update() override;

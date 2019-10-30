@@ -23,8 +23,6 @@ void BackGround::loadImage(){
 	if (img == -1) {
 		printfDx("BackGround::LoadImage_Error\n");
 	}
-
-	printfDx("%d\n", img);
 }
 
 void BackGround::draw(){
