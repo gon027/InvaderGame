@@ -2,14 +2,6 @@
 
 #include "DxLib.h"
 
-Block::Block(){
-	
-}
-
-Block::~Block(){
-	
-}
-
 void Block::init(int _x, int _y){
 	x = _x;
 	y = _y;
@@ -41,7 +33,7 @@ void Block::draw(){
 
 void Block::addCount(int _value){
 	count = count + _value;
-	if (count >= 4) {
+	if (count >= 3) {
 		count = 0;
 		life = false;
 	}
@@ -63,6 +55,10 @@ bool Block::getLife(){
 
 void Block::zeroLife(){
 	life = false;
+}
+
+void Block::setLife(bool _b){
+	life = _b;
 }
 
 Block & Block::operator++(int _count){

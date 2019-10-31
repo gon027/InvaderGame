@@ -10,6 +10,7 @@ public:
 
 	void setup() override;
 	void update() override;
+	void clear();
 
 	void init() override;
 	void draw() override;

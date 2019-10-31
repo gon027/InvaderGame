@@ -4,6 +4,8 @@
 #include "BaseScene.h"
 #include "SceneController.h"
 #include "BackGround.h"
+#include "Enemy.h"
+#include "UFO.h"
 
 class TitleScene : public BaseScene{
 public:
@@ -16,6 +18,9 @@ public:
 
 private:
 	BackGround backGround;
+	Enemy enemyImg;
+	UFO ufo;
+	int hiScore;
 };
 
 

@@ -12,13 +12,14 @@
 
 class Game : public BaseScene{
 public:
-	Game();
+	Game() = default;
 	Game(SceneController *_controller);
 	~Game() = default;
 
 	void setup() override;		//最初に1回だけ呼ばれる
 	void init();				//敵が倒されると呼ばれる
 	void update() override;
+	void clear();
 
 	void playerUpdate();
 	void alienUpdate();
@@ -42,6 +43,7 @@ public:
 	int timer = 0;
 	int score;			//スコア
 	int hiScore;		//ハイスコア
+	int roundCount;
 	int enemyOffset;	//敵が描画される座標
 	int hitPoint;		//プレイヤーの残り自機
 };

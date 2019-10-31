@@ -4,7 +4,7 @@
 #include "Define.h"
 #include "AudioManager.h"
 
-constexpr int TIME = 100;
+constexpr int TIME = 2000;
 
 UFO::UFO(){
 
@@ -34,6 +34,10 @@ void UFO::update() {
 		}
 	}
 	//printfDx("%d\n", interval);
+}
+
+void UFO::clear(){
+	life = false;
 }
 
 void UFO::init() {
@@ -71,10 +75,9 @@ void UFO::randPoint(){
 	else if (flag = 1) {
 		//‰E‚©‚ç¶‚ÖˆÚ“®‚·‚é‚æ‚¤‚É‚·‚é
 		this->x = Window::WALL_R - width;
-		
 		this->xspeed = -2;
 	}
-	this->y = 144;
+	this->y = 175;
 #else
 	if (flag == 0) {
 		//‰E‚©‚ç¶‚ÖˆÚ“®‚·‚é‚æ‚¤‚É‚·‚é

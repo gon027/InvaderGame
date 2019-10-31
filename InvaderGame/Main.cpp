@@ -1,15 +1,13 @@
 #include "Main.h"
 
-#include "Timer.h"
-#include "TitleScene.h"
+#include "FileReader.h"
+#include "GameOver.h"
 
 SceneController *controller;
 
-Game game;
-TitleScene title;
-
 void init() {
 	SetBackgroundColor(0, 0, 0);
+
 
 	singleton<AudioManager>::getInstance().read("sound/se_test1.mp3", 0);
 	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 1);
@@ -20,17 +18,11 @@ void init() {
 	singleton<AudioManager>::getInstance().read("sound/se_test2.mp3", 6);
 	*/	
 
-	//title.setup();
-	//game.setup();
-
 	controller = new SceneController();
 	controller->scene = new TitleScene(controller);
-	//controller->setup();
 }
 
 void update() {
-	//title.update();
-	//game.update();
 	controller->update();;
 }
 

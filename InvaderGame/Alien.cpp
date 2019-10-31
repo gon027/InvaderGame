@@ -1,35 +1,8 @@
 #include "Alien.h"
 
-#include <vector>
 #include "DxLib.h"
 #include "Define.h"
 #include "AudioManager.h"
-using std::vector;
-
-class Point {
-public:
-	Point() = default;
-
-	Point(int _x, int _y) {
-		x = _x;
-		y = _y;
-	}
-
-	~Point() = default;
-
-	int x;
-	int y;
-};
-
-vector<Point> enemyPoint;		//弾を打つ抽選のための配列
-
-Alien::Alien(){
-	
-}
-
-Alien::~Alien(){
-
-}
 
 //他クラスのコンストラクタで呼び出す
 void Alien::setup(){
@@ -50,7 +23,15 @@ void Alien::init(int _x, int _y) {
 	y = _y;
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
-			alien[i][j].init(x + j * 48, y + i * 48);
+			if (i == 0) {
+				alien[i][j].init(x + j * 48, y + i * 48, 0);
+			}
+			else if (i == 1 || i == 2) {
+				alien[i][j].init(x + j * 48, y + i * 48, 1);
+			}
+			else if (i == 3 || i == 4) {
+				alien[i][j].init(x + j * 48, y + i * 48, 2);
+			}
 		}
 	}
 
@@ -69,6 +50,8 @@ void Alien::draw(){
 }
 
 void Alien::move(){
+	chengeSpeed();
+
 	// 移動処理
 	for (int i = 0; i < Alien::h; i++) {
 		//if (turnFlag == true)  break;
@@ -99,26 +82,7 @@ void Alien::move(){
 		turnFlag = false;
 	}
 
-	printfDx("allEnemyCount = %d\n", allAlienCount);
-
-	if (allAlienCount == 50) {
-		speedUp(60);
-	}
-	else if (allAlienCount == 30) {
-		speedUp(40);
-	}
-	else if (allAlienCount == 20) {
-		speedUp(20);
-	}
-	else if (allAlienCount == 10) {
-		speedUp(10);
-	}
-	else if (allAlienCount == 5) {
-		speedUp(5);
-	}
-	else if (allAlienCount == 1) {
-		speedUp(1);
-	}
+	//printfDx("allEnemyCount = %d\n", allAlienCount);
 }
 
 int bulletInterval = 0;
@@ -126,7 +90,7 @@ void Alien::shot() {
 	enemyPoint.clear();
 	bulletInterval++;
 
-	if (bulletInterval == 35) {
+	if (bulletInterval == 20) {
 		//1列にいる敵から弾を発射する敵を探す
 		for (int x = 0; x < w; x++) {
 			//外側の敵が生きていてかつ、shotflgaがfalseの場合の時vectorに追加
@@ -136,7 +100,6 @@ void Alien::shot() {
 			else {
 				//外側の敵が死んでいるとき、shotflagが立っているとき
 				//後ろの敵が生きていて、shotflagが立っていないやつを追加
-				//TODO: shotflagが常にfalseになっているので、今は弾を撃てません
 				for (int y = h - 1; y >= 0; y--) {
 					if (alien[y][x].life) {
 						enemyPoint.push_back(Point(x, y));
@@ -156,6 +119,16 @@ void Alien::shot() {
 	}
 }
 
+void Alien::clear(){
+	enemyPoint.clear();
+	for (int i = 0; i < Alien::h; i++) {
+		for (int j = 0; j < Alien::w; j++) {
+			alien[i][j].bullet.life = false;
+			alien[i][j].life = false;
+		}
+	}
+}
+
 void Alien::alienCoundDown() {
 	allAlienCount -= 1;
 }
@@ -169,12 +142,61 @@ void Alien::resetAlienCount(){
 }
 
 void Alien::speedUp(int _val){
-	printfDx("fdsafad\n");
+	//printfDx("fdsafad\n");
 	for (int i = 0; i < Alien::h; i++) {
 		for (int j = 0; j < Alien::w; j++) {
 			//敵のライフがない場合
 			if (alien[i][j].life == false) continue;
 			alien[i][j].speedUp(_val);
 		}
+	}
+}
+
+void Alien::chengeSpeed(){
+	//初期値
+	if (allAlienCount == 45) {
+		speedUp(45);
+	}
+	else if (allAlienCount == 35) {
+		speedUp(30);
+	}
+	else if (allAlienCount == 25) {
+		speedUp(25);
+	}
+	else if (allAlienCount == 21) {
+		speedUp(21);
+	}
+	else if (allAlienCount == 17) {
+		speedUp(17);
+	}
+	else if (allAlienCount == 10) {
+		speedUp(10);
+	}
+	else if (allAlienCount == 9) {
+		speedUp(9);
+	}
+	else if (allAlienCount == 8) {
+		speedUp(8);
+	}
+	else if (allAlienCount == 7) {
+		speedUp(7);
+	}
+	else if (allAlienCount == 6) {
+		speedUp(6);
+	}
+	else if (allAlienCount == 5) {
+		speedUp(5);
+	}
+	else if (allAlienCount == 4) {
+		speedUp(4);
+	}
+	else if (allAlienCount == 3) {
+		speedUp(3);
+	}
+	else if (allAlienCount == 2) {
+		speedUp(2);
+	}
+	else if (allAlienCount == 1) {
+		speedUp(1);
 	}
 }

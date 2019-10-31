@@ -13,8 +13,8 @@ Enemy::~Enemy(){
 }
 
 void Enemy::setup(){
-	LoadActorImage("image/enemy_test.png");
-	//LoadEnemyImage("image/enemy_test3.png");
+	//LoadActorImage("image/enemy_test.png");
+	LoadActorImgBuf("image/enemy_images.png");
 }
 
 void Enemy::update(){
@@ -22,31 +22,30 @@ void Enemy::update(){
 }
 
 void Enemy::init(){
-	TIMEUP = 30;
+	TIMEUP = 50;
 	this->xspeed = 6;
 	this->yspeed = 16;
 	this->life = true;
 	this->shotflag = false;
 	intervar = 0;
-	index = 0;
 }
 
-void Enemy::init(int _x, int _y){
+void Enemy::init(int _x, int _y, int _index){
 	x = _x;
 	y = _y;
+	index = _index;
 	init();
 }
 
 void Enemy::draw(){
-	DrawImage(this->x, this->y);
-	//DrawImage2(this->x, this->y);
+	//DrawImage(this->x, this->y);
+	DrawImageFromImgBuf(x, y, index);
 	bullet.draw();
 }
 
 void Enemy::move(){
 	intervar = (intervar + 1) % TIMEUP;
 	if (intervar == TIMEUP - 1) {
-		index = (index + 1) % 6;
 		x += xspeed;
 		intervar = 0;
 	}
@@ -62,10 +61,8 @@ void Enemy::move(){
 }
 
 void Enemy::shot(){
-
 	//if (shotflag) {
 		bullet.init(this->x + width / 2, this->y + height * 2, 5, GetColor(255, 255, 0));
-		
 	//}
 }
 
@@ -91,22 +88,4 @@ bool Enemy::wallJudge(){
 
 void Enemy::speedUp(int _val){
 	TIMEUP = _val;
-}
-
-void Enemy::LoadEnemyImage(const char* path) {
-	int error;
-	//error = LoadDivGraph(path, 2, 2, 1, 32, 32, imgbuf);
-	error = LoadDivGraph(path, 6, 2, 3, 32, 32, imgbuf);
-	if (error != 0) {
-		printfDx("Eenmy::LoadActorImage_ERROR\n");
-	}
-}
-
-void Enemy::DrawImage2(int x, int y) {
-	//printfDx("ACtor::DrawImage\n");
-	int error;
-	error = DrawGraph(x, y, imgbuf[index], TRUE);
-	if (error != 0) {
-		printfDx("Enemy::DrawImage_ERROR\n");
-	}
 }

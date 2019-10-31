@@ -1,17 +1,13 @@
 #include "Game.h"
 
 #include "Define.h"
-#include "singleton.h"
 #include "FileReader.h"
 #include "AudioManager.h"
-#include "Timer.h"
 #include "TitleScene.h"
+#include "GameOver.h"
 
 static constexpr int ufoScore[] = {50, 100, 300};
-
-Game::Game(){
-	//setup();
-}
+int waitTimer = 0;
 
 Game::Game(SceneController * _controller){
 	this->controller = _controller;
@@ -23,9 +19,10 @@ void Game::setup(){
 	backGround.loadImage();
 
 	score = 0;
-	hitPoint = 0;
+	hitPoint = 2;
+	roundCount = 0;
 	//ファイルから値を読み出す
-	singleton<FileReader>::getInstance().read("text/HiScore.txt", "r");
+	//singleton<FileReader>::getInstance().read("text/HiScore.txt", "r");
 	hiScore = singleton<FileReader>::getInstance().getScore();
 
 	enemyOffset = 250;
@@ -70,13 +67,13 @@ void Game::update(){
 	count++;
 
 	SetFontSize(32);
-	DrawString(400 + 50, 50, "SCORE< 1 >", GetColor(0, 255, 255));
-	DrawString(640 + 30, 50, "HI-SCORE", GetColor(0, 0, 255));
-	DrawString(840 + 30, 50, "ROUND", GetColor(255, 255, 0));
+	DrawString(400 + 50, 70, "SCORE< 1 >", GetColor(0, 255, 255));
+	DrawString(640 + 30, 70, "HI-SCORE", GetColor(0, 0, 255));
+	DrawString(840 + 30, 70, "ROUND", GetColor(255, 255, 0));
 
-	DrawFormatString(400 + 50 + 37, 90, GetColor(255, 255, 255), "%05d", score);
-	DrawFormatString(640 + 50, 90, GetColor(0, 255, 255), "%05d", hiScore);
-	DrawFormatString(840 + 85, 90, GetColor(255, 255, 255), "%02d", 0);
+	DrawFormatString(400 + 50 + 37, 110, GetColor(255, 255, 255), "%05d", score);
+	DrawFormatString(640 + 50, 110, GetColor(0, 255, 255), "%05d", hiScore);
+	DrawFormatString(840 + 85, 110, GetColor(255, 255, 255), "%02d", roundCount);
 
 	
 	if (isRunning) {
@@ -85,9 +82,10 @@ void Game::update(){
 		alienUpdate();
 		ufpUpdate();
 
-
 		if (alien.getAlienCount() == 0) {
+			clear();
 			enemyOffset = 384;
+			roundCount++;
 			init();
 		}
 
@@ -95,19 +93,23 @@ void Game::update(){
 			hitPoint -= 1;
 			player.life = true;
 		}
+	}
 
 
 		//プレイヤーの体力が-1になったとき
-		if (hitPoint < 0) {
+	if (hitPoint < 0) {
+		isRunning = false;
+		waitTimer++;
+
+		if (waitTimer >= 10) {
+			clear();
+			
 			if (score >= hiScore) {
 				hiScore = score;
 				singleton<FileReader>::getInstance().write("text/HiScore.txt", "w", hiScore);
 			}
-			score = 0;
-			enemyOffset = 220;
-			isRunning = false;
 
-			controller->scene = new TitleScene(controller);
+			controller->scene = new GameOver(controller, 1, score, hiScore);
 			delete this;
 		}
 	}
@@ -115,9 +117,20 @@ void Game::update(){
 	fps.Wait();
 }
 
+//後処理関数
+void Game::clear(){
+	player.clear();
+	alien.clear();
+	ufo.clear();
+	wall1.clear();
+	wall2.clear();
+	wall3.clear();
+	wall4.clear();
+}
+
 void Game::playerUpdate(){
 	//プレイヤーの残り自機を描画
-	DrawFormatString(Window::WALL_L, 820, GetColor(0, 255, 255), "%d", hitPoint + 1);
+	DrawFormatString(Window::WALL_L + 10, 820, GetColor(0, 255, 255), "%d", hitPoint + 1);
 	for (int i = 0; i < hitPoint; ++i) {
 		player.draw(Window::WALL_L + 50 + 48 * i, 820);
 	}
@@ -130,7 +143,7 @@ void Game::playerUpdate(){
 			for (int j = 0; j < Alien::w; j++) {
 				if (alien.alien[i][j].life) {
 					if (player.isActorCollision(alien.alien[i][j])) {
-						//player.life = false;
+						player.life = false;
 					}
 				}
 			}
@@ -142,9 +155,9 @@ void Game::playerUpdate(){
 			if (player.bullet.isCollision(ufo)) {
 				if (ufo.life) {
 					player.bullet.life = false;
+					ufo.life = false;
 					int temScore = ufoScore[GetRand(2)];
 					score += temScore;
-					ufo.life = false;
 				}
 			}
 
@@ -155,6 +168,7 @@ void Game::playerUpdate(){
 
 					//プレイヤーの弾が敵にあたったときの判定
 					if (player.bullet.isCollision(alien.alien[i][j])) {
+						printfDx("Hit\n");
 						alien.alien[i][j].life = false;
 						player.bullet.life = false;
 
@@ -173,6 +187,7 @@ void Game::playerUpdate(){
 
 					//自分の弾が敵の弾に当たった時の処理
 					if (player.isBulletCollision(alien.alien[i][j].bullet)) {
+						printfDx("Hit::BulletCollision\n");
 						player.bullet.life = false;
 						alien.alien[i][j].bullet.life = false;
 						count = 0;
@@ -182,18 +197,22 @@ void Game::playerUpdate(){
 
 			//弾がブロックの塊にあたったときの処理
 			if (wall1.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
+				printfDx("Hit::Wall1\n");
 				player.bullet.life = false;
 			}
 
 			if (wall2.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
+				printfDx("Hit::Wall2\n");
 				player.bullet.life = false;
 			}
 
 			if (wall3.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
+				printfDx("Hit::Wall3\n");
 				player.bullet.life = false;
 			}
 
 			if (wall4.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
+				printfDx("Hit::Wall4\n");
 				player.bullet.life = false;
 			}
 		}
@@ -217,7 +236,6 @@ void Game::alienUpdate(){
 				wall3.ehitTest(alien.alien[i][j].x, alien.alien[i][j].y, alien.alien[i][j].width, alien.alien[i][j].height);
 				wall4.ehitTest(alien.alien[i][j].x, alien.alien[i][j].y, alien.alien[i][j].width, alien.alien[i][j].height);
 			}
-
 
 			//敵の弾のlifeがtrueの時の判定
 			if (alien.alien[i][j].bullet.life) {

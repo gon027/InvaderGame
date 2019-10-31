@@ -3,8 +3,8 @@
 
 class Block {
 public:
-	Block();
-	~Block();
+	Block() = default;
+	~Block() = default;
 
 	void init(int _x, int _y);
 	void setup();
@@ -15,6 +15,7 @@ public:
 
 	bool getLife();
 	void zeroLife();
+	void setLife(bool _b);
 
 	//‰æ‘œ‚ð“ü‚ê‘Ö‚¦‚é
 	Block& operator++(int _count);

@@ -12,6 +12,7 @@ public:
 	void setup();
 	void draw();
 	void update();
+	void clear();
 	bool hitTest(int _x, int _y, int _w, int _h);
 	void ehitTest(int _x, int _y, int _w, int _h);
 

@@ -40,6 +40,14 @@ void WALL::update(){
 	}
 }
 
+void WALL::clear(){
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			wall[i][j].setLife(false);
+		}
+	}
+}
+
 bool WALL::hitTest(int _x, int _y, int _w, int _h){
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {

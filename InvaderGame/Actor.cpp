@@ -47,3 +47,21 @@ void Actor::DrawImage(int x, int y){
 		printfDx("DRAWIMAGE_ERROR\n");
 	}
 }
+
+void Actor::LoadActorImgBuf(const char * _path){
+	int error;
+	error = LoadDivGraph(_path, 3, 3, 1, 32, 32, imgbuf);
+	if (error == -1) {
+		printfDx("Actor::LoadActorImgBuf_ERROR\n");
+	}
+}
+
+void Actor::DrawImageFromImgBuf(int _x, int _y, int _index){
+	int error;
+	error = DrawGraph(_x, _y, imgbuf[_index], TRUE);
+	width = 32;
+	height = 32;
+	if (error != 0) {
+		printfDx("Actor::LoadActorImgBuf_ERROR\n");
+	}
+}

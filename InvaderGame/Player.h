@@ -13,6 +13,7 @@ public:
 	void update() override;
 	void init() override;
 	void draw(int _x, int _y);
+	void clear();
 
 private:
 	void draw() override;
