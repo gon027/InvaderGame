@@ -8,7 +8,7 @@ void FileReader::open(const char *_path, const char* _mode){
 	if (error != 0) {
 		printfDx("FileReader::open_ERROR\n");
 	}
-	printfDx("FileReader::open_SUCCESS!!\n");
+	//printfDx("FileReader::open_SUCCESS!!\n");
 }
 
 void FileReader::read(const char *_path, const char * _mode){
@@ -18,7 +18,7 @@ void FileReader::read(const char *_path, const char * _mode){
 		printfDx("FileReader::read_ERROR!!\n");
 	}
 	close();
-	printfDx("FileReader::read_SUCCESS!!\n");
+	//printfDx("FileReader::read_SUCCESS!!\n");
 }
 
 void FileReader::write(const char *_path, const char* _mode, int _hiScore){
@@ -28,7 +28,7 @@ void FileReader::write(const char *_path, const char* _mode, int _hiScore){
 		printfDx("FileReader::write_ERROR!!\n");
 	}
 	close();
-	printfDx("FileReader::write_SUCCESS!!\n");
+	//printfDx("FileReader::write_SUCCESS!!\n");
 }
 
 void FileReader::close(){

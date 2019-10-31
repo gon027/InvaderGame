@@ -79,7 +79,6 @@ bool Enemy::wallJudge(){
 	int xx = x + xspeed;
 
 	if (xx <= Window::WALL_L || xx + width >= Window::WALL_R) {
-		printfDx("dfdsfads\n");
 		return true;
 	}
 

@@ -41,7 +41,7 @@ void GameOver::update(){
 		}
 	}
 	else {
-		DrawFormatString(Window::MIDDLE + 20, 575, bule, "%05d", hiScore);
+		DrawFormatString(Window::MIDDLE + 20, 600, bule, "%05d", hiScore);
 	}
 
 	DrawFormatString(Window::MIDDLE - 100, 700, bule, "%s", "PRESS R RESTART");

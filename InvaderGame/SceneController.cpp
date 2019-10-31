@@ -22,7 +22,6 @@ void SceneController::update(){
 }
 
 void SceneController::changeScene(SceneStatus _status){
-	printfDx("SceneController::changeScene");
 
 	if (scene != nullptr) {
 		delete scene;

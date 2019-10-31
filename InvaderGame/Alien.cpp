@@ -90,7 +90,7 @@ void Alien::shot() {
 	enemyPoint.clear();
 	bulletInterval++;
 
-	if (bulletInterval == 20) {
+	if (bulletInterval == 35) {
 		//1—ñ‚É‚¢‚é“G‚©‚ç’e‚ð”­ŽË‚·‚é“G‚ð’T‚·
 		for (int x = 0; x < w; x++) {
 			//ŠO‘¤‚Ì“G‚ª¶‚«‚Ä‚¢‚Ä‚©‚ÂAshotflga‚ªfalse‚Ìê‡‚ÌŽžvector‚É’Ç‰Á

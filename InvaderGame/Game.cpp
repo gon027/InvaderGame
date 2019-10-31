@@ -168,7 +168,6 @@ void Game::playerUpdate(){
 
 					//ƒvƒŒƒCƒ„[‚Ì’e‚ª“G‚É‚ ‚½‚Á‚½‚Æ‚«‚Ì”»’è
 					if (player.bullet.isCollision(alien.alien[i][j])) {
-						printfDx("Hit\n");
 						alien.alien[i][j].life = false;
 						player.bullet.life = false;
 
@@ -187,7 +186,6 @@ void Game::playerUpdate(){
 
 					//©•ª‚Ì’e‚ª“G‚Ì’e‚É“–‚½‚Á‚½‚Ìˆ—
 					if (player.isBulletCollision(alien.alien[i][j].bullet)) {
-						printfDx("Hit::BulletCollision\n");
 						player.bullet.life = false;
 						alien.alien[i][j].bullet.life = false;
 						count = 0;
@@ -197,22 +195,18 @@ void Game::playerUpdate(){
 
 			//’e‚ªƒuƒƒbƒN‚Ì‰ò‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
 			if (wall1.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
-				printfDx("Hit::Wall1\n");
 				player.bullet.life = false;
 			}
 
 			if (wall2.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
-				printfDx("Hit::Wall2\n");
 				player.bullet.life = false;
 			}
 
 			if (wall3.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
-				printfDx("Hit::Wall3\n");
 				player.bullet.life = false;
 			}
 
 			if (wall4.hitTest(player.bullet.x, player.bullet.y, player.bullet.width, player.bullet.height)) {
-				printfDx("Hit::Wall4\n");
 				player.bullet.life = false;
 			}
 		}
@@ -241,6 +235,7 @@ void Game::alienUpdate(){
 			if (alien.alien[i][j].bullet.life) {
 				//“G‚Ì’e‚ªƒvƒŒƒCƒ„[‚É‚ ‚½‚Á‚½‚Æ‚«‚Ìˆ—
 				if (alien.alien[i][j].bullet.isCollision(player)) {
+					printfDx("aaaa\n");
 					if (player.life) {
 						player.life = false;
 						alien.alien[i][j].bullet.life = false;

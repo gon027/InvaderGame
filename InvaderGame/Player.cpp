@@ -54,7 +54,7 @@ void Player::draw(){
 }
 
 void Player::move() {
-	if (key[KEY_INPUT_S] >= 1) {
+	if (key[KEY_INPUT_D] >= 1) {
 		x -= xspeed;
 	}
 
