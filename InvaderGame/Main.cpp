@@ -27,10 +27,15 @@ void update() {
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrefInstance, LPSTR lpCmdLine, int nCmdShow) {
+#ifdef FULL_SCREEN
+	ChangeWindowMode(FALSE);
+#else
 	ChangeWindowMode(TRUE);
+#endif // FULL_SCREEN
+
 	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 	SetGraphMode(Window::WIDTH, Window::HEIGHT, 32);
-	SetWindowSize(Window::WIDTH, Window::HEIGHT);
+	//SetWindowSize(Window::WIDTH, Window::HEIGHT);
 	DxLib_Init();
 	SetDrawScreen(DX_SCREEN_BACK); 
 

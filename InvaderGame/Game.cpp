@@ -6,8 +6,8 @@
 #include "TitleScene.h"
 #include "GameOver.h"
 
-static constexpr int ufoScore[] = {50, 100, 300};
 int waitTimer = 0;
+int playerWainTime = 0;
 
 Game::Game(SceneController * _controller){
 	this->controller = _controller;
@@ -20,7 +20,7 @@ void Game::setup(){
 
 	score = 0;
 	hitPoint = 2;
-	roundCount = 0;
+	roundCount = 1;
 	//ファイルから値を読み出す
 	//singleton<FileReader>::getInstance().read("text/HiScore.txt", "r");
 	hiScore = singleton<FileReader>::getInstance().getScore();
@@ -109,7 +109,7 @@ void Game::update(){
 				singleton<FileReader>::getInstance().write("text/HiScore.txt", "w", hiScore);
 			}
 
-			controller->scene = new GameOver(controller, 1, score, hiScore);
+			controller->scene = new GameOver(controller, roundCount, score, hiScore);
 			delete this;
 		}
 	}
@@ -156,8 +156,7 @@ void Game::playerUpdate(){
 				if (ufo.life) {
 					player.bullet.life = false;
 					ufo.life = false;
-					int temScore = ufoScore[GetRand(2)];
-					score += temScore;
+					score += ufo.getUfoScore();
 				}
 			}
 
@@ -235,7 +234,6 @@ void Game::alienUpdate(){
 			if (alien.alien[i][j].bullet.life) {
 				//敵の弾がプレイヤーにあたったときの処理
 				if (alien.alien[i][j].bullet.isCollision(player)) {
-					printfDx("aaaa\n");
 					if (player.life) {
 						player.life = false;
 						alien.alien[i][j].bullet.life = false;

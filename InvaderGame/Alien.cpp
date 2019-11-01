@@ -93,8 +93,8 @@ void Alien::shot() {
 	if (bulletInterval == 35) {
 		//1—ñ‚É‚¢‚é“G‚©‚ç’e‚ð”­ŽË‚·‚é“G‚ð’T‚·
 		for (int x = 0; x < w; x++) {
-			//ŠO‘¤‚Ì“G‚ª¶‚«‚Ä‚¢‚Ä‚©‚ÂAshotflga‚ªfalse‚Ìê‡‚ÌŽžvector‚É’Ç‰Á
-			if (alien[h - 1][x].life) {
+			//ŠO‘¤‚Ì“G‚ª¶‚«‚Ä‚¢‚Ä‚©‚ÂAbullet.life‚ªfalse‚Ìê‡‚ÌŽžvector‚É’Ç‰Á
+			if (alien[h - 1][x].life && alien[h - 1][x].bullet.life == false) {
 				enemyPoint.push_back(Point(x, h - 1));
 			}
 			else {
@@ -109,11 +109,11 @@ void Alien::shot() {
 			}
 		}
 
+		//”z—ñ‚É“ü‚Á‚Ä‚¢‚é“G‚Ì’N‚ª’e‚ðŒ‚‚Â‚©’Š‘I‚ðs‚¤
 		int rand = GetRand(enemyPoint.size() - 1);
 		int xIndex = enemyPoint.at(rand).x;
 		int yIndex = enemyPoint.at(rand).y;
 		alien[yIndex][xIndex].shot();
-		//alien[yIndex][xIndex].shotflag = true;
 
 		bulletInterval = 0;
 	}

@@ -18,6 +18,8 @@ public:
 
 	void randPoint();
 
+	int getUfoScore() noexcept;
+
 private:
 	int interval;
 };

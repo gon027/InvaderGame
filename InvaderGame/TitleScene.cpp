@@ -55,7 +55,7 @@ void TitleScene::update(){
 
 
 	SetFontSize(28);
-	DrawFormatString(Window::MIDDLE - 25, 650, yellow, "%s", "F, D KEY : MOVE");
+	DrawFormatString(Window::MIDDLE - 25, 650, yellow, "%s", "D, F KEY : MOVE");
 	DrawFormatString(Window::MIDDLE + 20, 700, yellow, "%s", "J KEY : SHOT");
 
 	SetFontSize(32);

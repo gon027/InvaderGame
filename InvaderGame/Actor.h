@@ -5,12 +5,11 @@ class Bullet;
 
 class Actor {
 public:
-	Actor() {};
-	virtual ~Actor() {};
+	Actor() = default;
+	virtual ~Actor() = default;
 
 	bool isActorCollision(Actor& enemy);        //Actor“¯m‚Ì“–‚½‚è”»’è
 	bool isBulletCollision(Bullet& bullet);	    //Bullet‚Ì“–‚½‚è”»’è
-
 
 	void LoadActorImage(const char* path);      //‰æ‘œ“Ç‚İ‚İ
 	void DrawImage(int x, int y);               //‰æ‘œ•`‰æ

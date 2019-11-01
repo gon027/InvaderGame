@@ -4,6 +4,7 @@
 #include "Define.h"
 #include "AudioManager.h"
 
+static constexpr int ufoScore[] = { 50, 100, 300 };
 constexpr int TIME = 2000;
 
 UFO::UFO(){
@@ -91,4 +92,9 @@ void UFO::randPoint(){
 	}
 	this->y = 75;
 #endif // FULL_SCREEN
+}
+
+int UFO::getUfoScore() noexcept{
+	int rand = GetRand(2);
+	return ufoScore[rand];
 }

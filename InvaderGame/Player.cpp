@@ -64,19 +64,10 @@ void Player::move() {
 
 	if (key[KEY_INPUT_J] >= 1) {
 		if (bullet.isLife() == false) {
-			bullet.init(x + (width / 2), y - (bullet.height * 2), -10, GetColor(255, 0, 0));
+			bullet.init(x + (width / 2), y - (bullet.height * 2), -7, GetColor(255, 0, 0));
 			//singleton<AudioManager>::getInstance().play(0);
 		}
 	}
-
-//#ifdef DEBUG
-	//Ž©ŽEƒ{ƒ^ƒ“
-	if (key[KEY_INPUT_Q] == 1) {
-		if (life == true) {
-			life = false;
-		}
-	}
-//#endif // DEBUG
 
 	bullet.draw();
 
