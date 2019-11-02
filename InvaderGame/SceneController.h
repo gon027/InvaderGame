@@ -2,8 +2,6 @@
 #define SCENECONTROLLER_H
 
 #include "Define.h"
-#include "SceneStatus.h"
-#include "SceneController.h"
 #include "BaseScene.h"
 
 class BaseScene;
@@ -15,7 +13,6 @@ public:
 
 	void setup();
 	void update();
-	void changeScene(SceneStatus _status);
 
 public:
 	static BaseScene* scene;

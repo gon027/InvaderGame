@@ -34,12 +34,13 @@ public:
 	void move();
 	void shot();
 	void clear();
+
 	void alienCoundDown();
 	int getAlienCount();
 	void resetAlienCount();
+
 	void speedUp(int _val);
 	void chengeSpeed();
-
 
 private:
 	vector<Point> enemyPoint;		//’e‚ð‘Å‚Â’Š‘I‚Ì‚½‚ß‚Ì”z—ñ
@@ -48,9 +49,6 @@ private:
 	int y;
 	int allAlienCount;
 	bool turnFlag;
-	bool rightTurn;
-	bool stop;
-	int interval = 0;
 };
 
 #endif // !ENEMYS_H

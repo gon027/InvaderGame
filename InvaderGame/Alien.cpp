@@ -81,8 +81,6 @@ void Alien::move(){
 		}
 		turnFlag = false;
 	}
-
-	//printfDx("allEnemyCount = %d\n", allAlienCount);
 }
 
 int bulletInterval = 0;

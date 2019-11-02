@@ -20,21 +20,3 @@ void SceneController::setup(){
 void SceneController::update(){
 	scene->update();
 }
-
-void SceneController::changeScene(SceneStatus _status){
-
-	if (scene != nullptr) {
-		delete scene;
-	}
-
-	switch (_status){
-	case Title:
-		scene = new TitleScene();
-		break;
-	case GameScene:
-		scene = new Game();
-		break;
-	default:
-		break;
-	}
-}
