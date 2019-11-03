@@ -25,7 +25,7 @@ void Game::setup(){
 	//singleton<FileReader>::getInstance().read("text/HiScore.txt", "r");
 	hiScore = singleton<FileReader>::getInstance().getScore();
 
-	enemyOffset = 250;
+	enemyOffset = 253;
 
 	player.setup();
 	alien.setup();
@@ -80,11 +80,12 @@ void Game::update(){
 		wallUpdate();
 		playerUpdate();
 		alienUpdate();
+
 		ufpUpdate();
 
 		if (alien.getAlienCount() == 0) {
 			clear();
-			enemyOffset = 384;
+			enemyOffset = 397;
 			roundCount++;
 			init();
 		}
@@ -143,6 +144,7 @@ void Game::playerUpdate(){
 			for (int j = 0; j < Alien::w; j++) {
 				if (alien.alien[i][j].life) {
 					if (player.isActorCollision(alien.alien[i][j])) {
+						hitPoint = 0;
 						player.life = false;
 					}
 				}

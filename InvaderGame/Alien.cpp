@@ -85,40 +85,47 @@ void Alien::move(){
 
 int bulletInterval = 0;
 void Alien::shot() {
-	enemyPoint.clear();
+	enemyList.clear();
 	bulletInterval++;
 
 	if (bulletInterval == 35) {
 		//1列にいる敵から弾を発射する敵を探す
 		for (int x = 0; x < w; x++) {
-			//外側の敵が生きていてかつ、bullet.lifeがfalseの場合の時vectorに追加
+			//外側の敵が生きていてかつbullet.lifeがfalseの場合の時vectorに追加
 			if (alien[h - 1][x].life && alien[h - 1][x].bullet.life == false) {
-				enemyPoint.push_back(Point(x, h - 1));
+				enemyList.push_back(Point(x, h - 1));
 			}
 			else {
 				//外側の敵が死んでいるとき、shotflagが立っているとき
 				//後ろの敵が生きていて、shotflagが立っていないやつを追加
 				for (int y = h - 1; y >= 0; y--) {
-					if (alien[y][x].life) {
-						enemyPoint.push_back(Point(x, y));
+					if (alien[y][x].life && alien[h - 1][x].bullet.life == false) {
+						enemyList.push_back(Point(x, y));
 						break;
 					}
 				}
 			}
 		}
 
-		//配列に入っている敵の誰が弾を撃つか抽選を行う
-		int rand = GetRand(enemyPoint.size() - 1);
-		int xIndex = enemyPoint.at(rand).x;
-		int yIndex = enemyPoint.at(rand).y;
-		alien[yIndex][xIndex].shot();
+		//配列の中身が空ではない場合実行する
+		//中身が空の場合抽選を行わない
+		if (!enemyList.empty()) {
+			//配列に入っている敵の誰が弾を撃つか抽選を行う
+			int rand = GetRand(enemyList.size() - 1);
+			int xIndex = enemyList.at(rand).x;
+			int yIndex = enemyList.at(rand).y;
+			alien[yIndex][xIndex].shot();
+		}
+
+		//DrawFormatString(300, 500, GetColor(255, 255, 255), "%d\n", enemyPoint.size());
+		//printfDx("%d\n", enemyList.size());
 
 		bulletInterval = 0;
 	}
 }
 
 void Alien::clear(){
-	enemyPoint.clear();
+	enemyList.clear();
 	for (int i = 0; i < Alien::h; i++) {
 		for (int j = 0; j < Alien::w; j++) {
 			alien[i][j].bullet.life = false;

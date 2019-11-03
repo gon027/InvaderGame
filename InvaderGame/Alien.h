@@ -43,7 +43,7 @@ public:
 	void chengeSpeed();
 
 private:
-	vector<Point> enemyPoint;		//’e‚ð‘Å‚Â’Š‘I‚Ì‚½‚ß‚Ì”z—ñ
+	vector<Point> enemyList;		//’e‚ð‘Å‚Â’Š‘I‚Ì‚½‚ß‚Ì”z—ñ
 
 	int x;
 	int y;

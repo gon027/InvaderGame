@@ -62,7 +62,7 @@ void Enemy::move(){
 
 void Enemy::shot(){
 	//if (shotflag) {
-		bullet.init(this->x + width / 2, this->y + height * 2, 5, GetColor(255, 255, 0));
+		bullet.init(this->x + width / 2, this->y + height + 34, 5, GetColor(255, 255, 0));
 	//}
 }
 

@@ -5,9 +5,7 @@
 
 #include "Define.h"
 #include "SceneController.h"
-#include "Game.h"
 #include "TitleScene.h"
-#include "BackGround.h"
 #include "AudioManager.h"
 
 void init();

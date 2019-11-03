@@ -5,7 +5,7 @@
 #include "AudioManager.h"
 
 static constexpr int ufoScore[] = { 50, 100, 300 };
-constexpr int TIME = 2000;
+constexpr int TIME = 1500;
 
 UFO::UFO(){
 
@@ -27,6 +27,7 @@ void UFO::update() {
 		//singleton<AudioManager>::getInstance().play(0);
 	}
 	else {
+		//printfDx("%d\n", interval);
 		interval++;
 		if (interval >= TIME) {
 			randPoint();

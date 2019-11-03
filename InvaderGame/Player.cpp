@@ -54,15 +54,15 @@ void Player::draw(){
 }
 
 void Player::move() {
-	if (key[KEY_INPUT_D] >= 1) {
+	if (key[KEY_INPUT_LEFT] >= 1) {
 		x -= xspeed;
 	}
 
-	if (key[KEY_INPUT_F] >= 1) {
+	if (key[KEY_INPUT_RIGHT] >= 1) {
 		x += xspeed;
 	}
 
-	if (key[KEY_INPUT_J] >= 1) {
+	if (key[KEY_INPUT_SPACE] >= 1) {
 		if (bullet.isLife() == false) {
 			bullet.init(x + (width / 2), y - (bullet.height * 2), -7, GetColor(255, 0, 0));
 			//singleton<AudioManager>::getInstance().play(0);
